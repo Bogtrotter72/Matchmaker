@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://res.cloudinary.com/bogtrotter72/image/upload/v1580146957/Milestone%202/Placeholder%20Images/Page_Background_z9vuto.png");
+    display: flex;
+    height: 100vh;
+}
+
+.flip-card-game-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 640px;
+    margin: auto;
+    perspective: 2000px;
+    width: 640px;
+}
+
+.flip-card {
+    height: calc(33.3333% - 10px);
+    margin: 5px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s;
+    width: calc(25% - 10px);
+}
+
+.flip-card-front, .flip-card-back {
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.3);
+
+    backface-visibility: hidden;
+    background: white;
+
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+}
+
+.flip-card-front {
+    background:white;
+    transform: rotateY(-180deg);
+}
+
+.flip-card.flipped {
+    transform: rotateY(-180deg);
+}
