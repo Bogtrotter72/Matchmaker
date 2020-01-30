@@ -76,4 +76,4 @@ body {
 /* Display the card front */
 .flip-card.flipped {
     transform: rotateY(-180deg);
-}
+}   
