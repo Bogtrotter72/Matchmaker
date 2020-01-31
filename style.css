@@ -21,7 +21,7 @@ body {
 /* Slight offset of the wrapper required for the level select buttons */
 .btn-wrapper__level-select {
     display: none;
-    left: 60%;
+    left: 50%;
     position: absolute;
     top: 50.6%;
     transform: translate(-50%, -50%);
@@ -37,10 +37,14 @@ body {
 
 /* Set an initial rotation on the button, to animate a rotation when button is first displayed */
 .btn__level-select {
-    transform: rotateY(90deg);
+    transform: translateX(150px) rotateY(90deg) ;
 }
 
-/* Add a container to facilitate the card-flip */
+.btn__game-start {
+    width: 200px;
+}
+
+/* Add a game container */
 .flip-card-game-container {
     display: none;
     flex-wrap: wrap;
@@ -50,14 +54,23 @@ body {
     width: 640px;
 }
 
+/* Add a timer above the game container */
+.game-timer {
+    display: none;
+    left: 25%;
+    position: absolute;
+    top: 10%;
+    transform: translateX(-50%);
+}
+
 /* Set the card columns and rows (4 x 3)  */
 .flip-card {
-    height: calc(33.3333% - 10px);
+    /* height: calc(33.3333% - 10px); */
     margin: 5px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.7s;
-    width: calc(25% - 10px);
+    /* width: calc(25% - 10px); */
 }
 
 .flip-card-front, .flip-card-back {
@@ -76,4 +89,16 @@ body {
 /* Display the card front */
 .flip-card.flipped {
     transform: rotateY(-180deg);
-}   
+}
+
+.game-info-container {
+    background-color: orange;
+    display: none;
+    left: 50%;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
