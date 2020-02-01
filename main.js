@@ -47,18 +47,18 @@
 
     // Set the timer value based on the level selected
     $('.btn-beginner').click(function() {
-        timeRemaining = 60;
+        timeRemaining = 45;
         difficultyLevel = 1;
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
     $('.btn-intermediate').click(function() {
-        timeRemaining = 45;
-        difficultyLevel = 2;
+        timeRemaining = 30;
+        difficultyLevel = 3;
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
     $('.btn-advanced').click(function() {
-        timeRemaining = 30;
-        difficultyLevel = 3;
+        timeRemaining = 20;
+        difficultyLevel = 7;
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
 
@@ -70,14 +70,14 @@
         
         // Call the timer countdown function
         switch (timeRemaining) {
-            case 60:
-                countDown(60);
-                break;
             case 45:
                 countDown(45);
                 break;
             case 30:
                 countDown(30);
+                break;
+            case 20:
+                countDown(20);
                 break;
         }
     });    
@@ -136,7 +136,6 @@
         // Flip the card
         $(this).addClass('flipped');
         cardClick += 1;
-        console.log(cardClick);
 
         // Register the first flipped card
         if(!cardFlipped) {
@@ -279,15 +278,11 @@
     
     // Game win and reset
     function gameWon() {
-        console.log('Game won');
-        console.log(timeOnTheClock);
         $('.game-won').fadeIn(500);
         $('.btn-wrapper__game-won').fadeIn(500);
-        bonus = timeOnTheClock * 10;
-        score = Math.floor( (imageArray.length / cardClick) * imageArray.length * 100 + bonus ) * difficultyLevel;
+        bonus = ( (timeRemaining - timeOnTheClock) * difficultyLevel ) * 10;
+        score = Math.floor( (imageArray.length / cardClick) * imageArray.length * 100 + bonus );
         $('.game-won__score').html('Score: ' + score);
-
-        console.log(difficultyLevel);
         gameWonCond = true;
     };
 
@@ -329,6 +324,5 @@
 
         gameSetup();
     };
-
 
 }(jQuery));
