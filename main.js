@@ -1,11 +1,17 @@
 (function($) {
 
+    let bonus = 0;
     let cardFlipped = false;
+    let cardClick = 0;
+    let difficultyLevel = 0;
     let firstCard, secondCard, firstCardImg, secondCardImg, cardsRemaining;
     let gameWonCond = false;
     let lockBoard = false;
+    let score = 0;
     let timer, timeOnTheClock;
     let timeRemaining = 0;
+
+
     const imageArray = [
         'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
         'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
@@ -42,14 +48,17 @@
     // Set the timer value based on the level selected
     $('.btn-beginner').click(function() {
         timeRemaining = 60;
+        difficultyLevel = 1;
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
     $('.btn-intermediate').click(function() {
         timeRemaining = 45;
+        difficultyLevel = 2;
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
     $('.btn-advanced').click(function() {
         timeRemaining = 30;
+        difficultyLevel = 3;
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
 
@@ -75,6 +84,8 @@
 
     $('.btn-playAgain__true').click(resetGame);
 
+
+    /* GAME FUNCTIONALITY */
 
     function gameInit() {
 
@@ -113,7 +124,7 @@
         cardFlipped = false;
 
         $('.flip-card').click(playGame);
-    }
+    };
 
     function playGame() {
         // Prevent clicking if two, non-matching cards are already flipped
@@ -124,6 +135,8 @@
 
         // Flip the card
         $(this).addClass('flipped');
+        cardClick += 1;
+        console.log(cardClick);
 
         // Register the first flipped card
         if(!cardFlipped) {
@@ -197,7 +210,8 @@
                 'transition-delay': '2.5s'
             });
     
-    }
+    };
+
     
     // Fisher-Yates shuffle algorithm:
     function shuffleCards(imageArray) {
@@ -223,6 +237,7 @@
         }
      };
     
+
      /* TIMER FUNCTIONALITY */
      function countDown(timeRemaining) {
 
@@ -244,9 +259,10 @@
 
     function stopTimer() {
         clearInterval(timer);
-    }
+    };
     
 
+    // Layout functionality
     function fourColumnLayout() {
         $('.flip-card').css({
             'height': 'calc(33.3333% - 10px)',
@@ -259,15 +275,21 @@
             'height': 'calc(25% - 10px)',
             'width': 'calc(33.3333% - 10px)'
         });
-    }
+    };
     
+    // Game win and reset
     function gameWon() {
         console.log('Game won');
         console.log(timeOnTheClock);
         $('.game-won').fadeIn(500);
         $('.btn-wrapper__game-won').fadeIn(500);
+        bonus = timeOnTheClock * 10;
+        score = Math.floor( (imageArray.length / cardClick) * imageArray.length * 100 + bonus ) * difficultyLevel;
+        $('.game-won__score').html('Score: ' + score);
+
+        console.log(difficultyLevel);
         gameWonCond = true;
-    }
+    };
 
     function resetGame() {
         $('.flip-card').removeClass('flipped');
@@ -276,6 +298,7 @@
         lockBoard = false;
         gameWonCond = false;
         timeRemaining = 0;
+        cardClick = 0;
         $('.game-info > p:eq(2)').remove();
 
         // All the conditions set out below need to be collected into a function
@@ -305,6 +328,7 @@
         });
 
         gameSetup();
-    }
+    };
+
 
 }(jQuery));

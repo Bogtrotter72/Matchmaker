@@ -52,21 +52,29 @@ body {
     width: 100%;
 }
 
-.game-won__info {
-    color: green;
-    font-size: 3rem;
+.game-won__wrapper {
     left: 50%;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 
+
+.game-won__info {
+    color: green;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.game-won__score {
+    color: green;
+    font-size: 2rem;
+    text-align: center;
+}
+
 .btn-wrapper__game-won {
     display: none;
     left: 50%;
-    position: absolute;
-    top: 60%;
-    transform: translateX(-50%);
 }
 
 /* Add a game container */
