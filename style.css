@@ -44,6 +44,31 @@ body {
     width: 200px;
 }
 
+.game-won {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: none;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.game-won__info {
+    color: green;
+    font-size: 3rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-wrapper__game-won {
+    display: none;
+    left: 50%;
+    position: absolute;
+    top: 60%;
+    transform: translateX(-50%);
+}
+
 /* Add a game container */
 .flip-card-game-container {
     display: none;
@@ -65,12 +90,10 @@ body {
 
 /* Set the card columns and rows (4 x 3)  */
 .flip-card {
-    /* height: calc(33.3333% - 10px); */
     margin: 5px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.7s;
-    /* width: calc(25% - 10px); */
 }
 
 .flip-card-front, .flip-card-back {

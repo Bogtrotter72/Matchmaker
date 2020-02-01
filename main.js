@@ -1,15 +1,35 @@
 (function($) {
 
     let cardFlipped = false;
-    let firstCard, secondCard;
-    let firstCardImg, secondCardImg;
+    let firstCard, secondCard, firstCardImg, secondCardImg, cardsRemaining;
+    let gameWonCond = false;
     let lockBoard = false;
+    let timer, timeOnTheClock;
     let timeRemaining = 0;
+    const imageArray = [
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg'
+    ];
+
+    // Initialize the game
+    gameInit();
+
+    // Call the game setup function
+    gameSetup();
 
     // Rotate main menu buttons out and level select buttons in
     $('.btn-selectLevel').click(function() {
         selectLevelBtnAnim();
-
     })
     
     // Fade out the level select buttons and fade in game info
@@ -33,8 +53,7 @@
         $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
 
-
-    // Fade out game info and fade in the game board
+    // Fade out game info, fade in the game board and set the timer
     $('.btn__game-start').click(function() {
         $('.game-info-container').fadeOut('slow');
         $('.flip-card-game-container').fadeIn(3000).css('display', 'flex');
@@ -52,54 +71,51 @@
                 countDown(30);
                 break;
         }
-    });
+    });    
+
+    $('.btn-playAgain__true').click(resetGame);
 
 
-    // Create an array to store the images
-    const imageArray = [
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg'
-    ];
+    function gameInit() {
 
-    // Create a relationship between the number of images and the number of cards in the game container
-    for(i = 0; i < imageArray.length; i++) {
-        $('.flip-card-game-container').append('<div class="flip-card"></div>');
-        $('.flip-card').eq(i)
-            .append('<img alt="nature image" class="flip-card-front">')
-            .append('<img alt="puzzle image" class="flip-card-back">');
-    }
+        // Create a relationship between the number of images and the number of cards in the game container
+        for(i = 0; i < imageArray.length; i++) {
+            $('.flip-card-game-container').append('<div class="flip-card"></div>');
+            $('.flip-card').eq(i)
+                .append('<img alt="nature image" class="flip-card-front">')
+                .append('<img alt="puzzle image" class="flip-card-back">');
+        }
 
-    // Shuffle the card face images
-    shuffleCards(imageArray);
+        // Set the card back images
+        $('.flip-card-back').each(function() {
+            $(this).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/card-back_dy1srw.png');
+        });
 
-    // Set the card back images
-    $('.flip-card-back').each(function() {
-        $(this).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/card-back_dy1srw.png');
-    });
-
-    // Create a 3-column or 4-column game board depending on number of images supplied 
-    if(imageArray.length%4 === 0) {
-        fourColumnLayout();
-    } else if (imageArray.length%6 === 0) {
-        threeColumnLayout();
-    } else {
-        return;
+        // Create a 3-column or 4-column game board depending on number of images supplied 
+        if(imageArray.length%4 === 0) {
+            fourColumnLayout();
+        } else if (imageArray.length%6 === 0) {
+            threeColumnLayout();
+        } else {
+            return;
+        };
     };
 
-    // Set the initial game play conditions
-    cardFlipped = false;
+    function gameSetup() {
 
-    $('.flip-card').click(function() {
+        // Set the cards remaining value
+        cardsRemaining = imageArray.length;
+        
+        // Shuffle the card face images
+        shuffleCards(imageArray);
+
+        // Set the initial game play conditions
+        cardFlipped = false;
+
+        $('.flip-card').click(playGame);
+    }
+
+    function playGame() {
         // Prevent clicking if two, non-matching cards are already flipped
         if(lockBoard) return;
 
@@ -124,6 +140,13 @@
             if(firstCardImg === secondCardImg) {
                 $(firstCard).off('click');
                 $(secondCard).off('click');
+
+                cardsRemaining -=2;
+
+                if (cardsRemaining === 0) {
+                    gameWonCond = true;
+                    gameWon();
+                }
             } else {
                 // If two, non-matching cards have been flipped lock the board
                 lockBoard = true;
@@ -138,94 +161,150 @@
             }
         };
 
-    })
-
-}(jQuery));
+    };
 
 
-function selectLevelBtnAnim() {
-    $('.btn-selectLevel').css('transform', 'translateX(-100px) rotateY(-90deg)').delay(1300).fadeOut();
-        
-        $('.btn-credits').css({
-            'transform': 'translateX(-100px) rotateY(-90deg)',
-            'transition-delay': '0.5s'
-        }).delay(1300).fadeOut();
-        
-        $('.btn-quit').css({
-            'transform': 'translateX(-100px) rotateY(-90deg)',
-            'transition-delay': '1.0s'
-        }).delay(1300).fadeOut();
+    function selectLevelBtnAnim() {
+        $('.btn-selectLevel').css('transform', 'translateX(-100px) rotateY(-90deg)').delay(1300).fadeOut();
+            
+            $('.btn-credits').css({
+                'transform': 'translateX(-100px) rotateY(-90deg)',
+                'transition-delay': '0.5s'
+            }).delay(1300).fadeOut();
+            
+            $('.btn-quit').css({
+                'transform': 'translateX(-100px) rotateY(-90deg)',
+                'transition-delay': '1.0s'
+            }).delay(1300).fadeOut();
+    
+            $('.btn-wrapper__level-select').fadeIn();
+    
+            $('.btn-beginner').fadeIn('slow').css({
+                'transform': 'rotateY(0deg)',
+                'opacity': 1,
+                'transition-delay': '1.5s'
+            });
+    
+            $('.btn-intermediate').fadeIn('slow').css({
+                'transform': 'rotateY(0deg)',
+                'opacity': 1,
+                'transition-delay': '2s'
+            });
+    
+            $('.btn-advanced').fadeIn('slow').css({
+                'transform': 'rotateY(0deg)',
+                'opacity': 1,
+                'transition-delay': '2.5s'
+            });
+    
+    }
+    
+    // Fisher-Yates shuffle algorithm:
+    function shuffleCards(imageArray) {
+    
+        let m = imageArray.length;
+        let t, i;
+    
+        // While there are elements left to shuffle
+        while(m) {
+            // Pick a random element
+            i = Math.floor(Math.random() * m--);
+    
+            // And swap it with the current element
+            t = imageArray[m];
+            imageArray[m] = imageArray[i];
+            imageArray[i] = t;
+        }
+    
+        // Place the images on the card front faces
+        for(i = 0; i < imageArray.length; i++) {
+            cardImage = imageArray[i];
+            $('.flip-card-front').eq(i).attr('src', cardImage);
+        }
+     };
+    
+     /* TIMER FUNCTIONALITY */
+     function countDown(timeRemaining) {
+
+        timer = setInterval(gameTimer, 1000);
+
+         function gameTimer () {
+            if(gameWonCond) stopTimer();
+            timeRemaining--;
+            if(timeRemaining >= 0  && !gameWonCond) {
+                $('.game-timer').html('Time: ' + timeRemaining);
+                timeOnTheClock = timeRemaining;
+            } 
+            // Game lost condition
+            if(timeRemaining === 0) {
+                alert('Game Over');
+            }
+        };
+    };
+
+    function stopTimer() {
+        clearInterval(timer);
+    }
+    
+
+    function fourColumnLayout() {
+        $('.flip-card').css({
+            'height': 'calc(33.3333% - 10px)',
+            'width': 'calc(25% - 10px)'
+        });
+    };
+    
+    function threeColumnLayout() {
+        $('.flip-card').css({
+            'height': 'calc(25% - 10px)',
+            'width': 'calc(33.3333% - 10px)'
+        });
+    }
+    
+    function gameWon() {
+        console.log('Game won');
+        console.log(timeOnTheClock);
+        $('.game-won').fadeIn(500);
+        $('.btn-wrapper__game-won').fadeIn(500);
+        gameWonCond = true;
+    }
+
+    function resetGame() {
+        $('.flip-card').removeClass('flipped');
+        $('.game-won').fadeOut(500);
+        $('.btn-wrapper__game-won').fadeOut(500);
+        lockBoard = false;
+        gameWonCond = false;
+        timeRemaining = 0;
+        $('.game-info > p:eq(2)').remove();
+
+        // All the conditions set out below need to be collected into a function
+
+        $('.flip-card-game-container').css('display', 'none');
+        $('.game-timer').css('display', 'none');
 
         $('.btn-wrapper__level-select').fadeIn();
+        $('.btn__level-select').css('transform', 'translateX(150px) rotateY(90deg)');
 
         $('.btn-beginner').fadeIn('slow').css({
             'transform': 'rotateY(0deg)',
             'opacity': 1,
-            'transition-delay': '1.5s'
+            'transition-delay': '0.5s'
         });
 
         $('.btn-intermediate').fadeIn('slow').css({
             'transform': 'rotateY(0deg)',
             'opacity': 1,
-            'transition-delay': '2s'
+            'transition-delay': '1s'
         });
 
         $('.btn-advanced').fadeIn('slow').css({
             'transform': 'rotateY(0deg)',
             'opacity': 1,
-            'transition-delay': '2.5s'
+            'transition-delay': '1.5s'
         });
 
-}
-
-// Fisher-Yates shuffle algorithm:
-function shuffleCards(imageArray) {
-
-    let m = imageArray.length;
-    let t, i;
-
-    // While there are elements left to shuffle
-    while(m) {
-        // Pick a random element
-        i = Math.floor(Math.random() * m--);
-
-        // And swap it with the current element
-        t = imageArray[m];
-        imageArray[m] = imageArray[i];
-        imageArray[i] = t;
+        gameSetup();
     }
 
-    // Place the images on the card front faces
-    for(i = 0; i < imageArray.length; i++) {
-        cardImage = imageArray[i];
-        $('.flip-card-front').eq(i).attr('src', cardImage);
-    }
- };
-
- function countDown(timeRemaining) {
-    setInterval(function() {
-        timeRemaining--;
-        if(timeRemaining >= 0) {
-            $('.game-timer').html('Time: ' + timeRemaining);
-        }
-
-        // Game lost condition
-        if(timeRemaining === 0) {
-            alert('Game Over');
-        }
-    }, 1000);
-};
-
-function fourColumnLayout() {
-    $('.flip-card').css({
-        'height': 'calc(33.3333% - 10px)',
-        'width': 'calc(25% - 10px)'
-    });
-};
-
-function threeColumnLayout() {
-    $('.flip-card').css({
-        'height': 'calc(25% - 10px)',
-        'width': 'calc(33.3333% - 10px)'
-    });
-}
+}(jQuery));
