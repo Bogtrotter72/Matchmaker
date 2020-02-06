@@ -1,4 +1,4 @@
-(function($) {
+
 
     let bonus = 0;
     let cardFlipped = false;
@@ -8,23 +8,32 @@
     let gameWonCond = false;
     let lockBoard = false;
     let score = 0;
-    let timer, timeOnTheClock;
-    let timeRemaining = 0;
+    let timer, totalTime, timeOnTheClock;
+    let successAudio = new Audio('Success.mp3');
+    successAudio.volume = 0.5;
+    let failAudio = new Audio('Failure.mp3');
+    failAudio.volume = 0.3;
+    let winAudio = new Audio('Game-win.mp3');
+    winAudio.volume = 0.5;
+    let flipAudio = new Audio('card-flip.mp3');
+    flipAudio.volume = 0.5;
+    let beginnerImgs = ['_001', '_002', '_003','_004', '_005', '_006'];
+
 
 
     const imageArray = [
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature1_rvbn13.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature2_ekswas.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg',
-        'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/placeimg_300_400_nature3_cpaoaw.jpg'
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_001_bhay28.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008484/Milestone%202/Final%20Images/Beginner_001__match_eyrmdw.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_002_xlg3f7.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_002__match_f57myd.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_003_o1jrd7.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008480/Milestone%202/Final%20Images/Beginner_003__match_lzysh0.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_004_rmtvyq.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_004__match_lp5lya.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_005_jkkwpo.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_005__match_ozvn4w.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_006_wimc5m.png',
+        'https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_006__match_vrisnb.png'
     ];
 
     // Initialize the game
@@ -32,6 +41,16 @@
 
     // Call the game setup function
     gameSetup();
+
+
+    // Reveal the game board and allow game play
+    $('.btn-startGame').click(function() {
+        $('.page-title').fadeOut('slow');
+        $('.bg-img__wrapper').fadeOut('slow');
+        $('.btn-wrapper__game-start').fadeOut('slow');
+    })
+
+
 
     // Rotate main menu buttons out and level select buttons in
     $('.btn-selectLevel').click(function() {
@@ -47,19 +66,14 @@
 
     // Set the timer value based on the level selected
     $('.btn-beginner').click(function() {
-        timeRemaining = 45;
         difficultyLevel = 1;
-        $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
     $('.btn-intermediate').click(function() {
-        timeRemaining = 30;
         difficultyLevel = 3;
-        $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
     $('.btn-advanced').click(function() {
-        timeRemaining = 20;
+
         difficultyLevel = 7;
-        $('.game-info').append('<p>You have ' +timeRemaining+ ' seconds to find all pairs</p>');
     });
 
     // Fade out game info, fade in the game board and set the timer
@@ -68,18 +82,7 @@
         $('.flip-card-game-container').fadeIn(3000).css('display', 'flex');
         $('.game-timer').fadeIn(3000);
         
-        // Call the timer countdown function
-        switch (timeRemaining) {
-            case 45:
-                countDown(45);
-                break;
-            case 30:
-                countDown(30);
-                break;
-            case 20:
-                countDown(20);
-                break;
-        }
+        gameCounter(0);
     });    
 
     $('.btn-playAgain__true').click(resetGame);
@@ -88,28 +91,10 @@
     /* GAME FUNCTIONALITY */
 
     function gameInit() {
-
-        // Create a relationship between the number of images and the number of cards in the game container
-        for(i = 0; i < imageArray.length; i++) {
-            $('.flip-card-game-container').append('<div class="flip-card"></div>');
-            $('.flip-card').eq(i)
-                .append('<img alt="nature image" class="flip-card-front">')
-                .append('<img alt="puzzle image" class="flip-card-back">');
-        }
-
         // Set the card back images
-        $('.flip-card-back').each(function() {
-            $(this).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580145848/Milestone%202/Placeholder%20Images/card-back_dy1srw.png');
+        $('.card__back-img').each(function() {
+            $(this).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png');
         });
-
-        // Create a 3-column or 4-column game board depending on number of images supplied 
-        if(imageArray.length%4 === 0) {
-            fourColumnLayout();
-        } else if (imageArray.length%6 === 0) {
-            threeColumnLayout();
-        } else {
-            return;
-        };
     };
 
     function gameSetup() {
@@ -123,58 +108,8 @@
         // Set the initial game play conditions
         cardFlipped = false;
 
-        $('.flip-card').click(playGame);
+        $('.card').click(playGame);
     };
-
-    function playGame() {
-        // Prevent clicking if two, non-matching cards are already flipped
-        if(lockBoard) return;
-
-        // Prevent double clicks
-        if(this === firstCard) return;
-
-        // Flip the card
-        $(this).addClass('flipped');
-        cardClick += 1;
-
-        // Register the first flipped card
-        if(!cardFlipped) {
-            cardFlipped = true;
-            firstCard = this;
-            firstCardImg = $(this).find(">:first-child").attr('src');
-        } else {
-            // Register the second flipped card
-            cardFlipped = false;
-            secondCard = this;
-            secondCardImg = $(this).find(">:first-child").attr('src');
-
-            // Do the flipped cards match
-            if(firstCardImg === secondCardImg) {
-                $(firstCard).off('click');
-                $(secondCard).off('click');
-
-                cardsRemaining -=2;
-
-                if (cardsRemaining === 0) {
-                    gameWonCond = true;
-                    gameWon();
-                }
-            } else {
-                // If two, non-matching cards have been flipped lock the board
-                lockBoard = true;
-
-                // Flip the cards back after 1.5 second delay and release the board
-                setTimeout(function() {
-                    $(firstCard).removeClass('flipped');
-                    $(secondCard).removeClass('flipped');
-                    lockBoard = false;
-                }, 1500);
-
-            }
-        };
-
-    };
-
 
     function selectLevelBtnAnim() {
         $('.btn-selectLevel').css('transform', 'translateX(-100px) rotateY(-90deg)').delay(1300).fadeOut();
@@ -211,6 +146,80 @@
     
     };
 
+    function playGame() {
+        // Prevent clicking if two, non-matching cards are already flipped
+        if(lockBoard) return;
+        
+
+        // Prevent double clicks
+        if(this === firstCard) return;
+
+        flipAudio.play()
+
+        // Flip the card
+        $(this).addClass('flipped');
+        cardClick += 1;
+
+        // Register the first flipped card
+        if(!cardFlipped) {
+            cardFlipped = true;
+            firstCard = this;
+            firstCardImg = $(this).find(">:first-child").find(">:first-child").attr('src');
+        } else {
+            // Register the second flipped card
+            cardFlipped = false;
+            secondCard = this;
+            secondCardImg = $(this).find(">:first-child").find(">:first-child").attr('src');
+
+
+            function checkForMatch() {
+                for(let i = 0; i < beginnerImgs.length; i++) {
+                    if( firstCardImg.includes('Beginner' + beginnerImgs[i]) && secondCardImg.includes('Beginner' + beginnerImgs[i]) ) {
+                        return true;
+                    }
+                }
+            };  
+
+
+            // Do the flipped cards match
+            if( checkForMatch() ) {
+
+                cardsRemaining -=2;
+
+                if (cardsRemaining === 0) {
+                    gameWonCond = true;
+                    setTimeout(() => {
+                        winAudio.play()
+                    }, 500);
+                    gameWon();
+                } else {
+                    setTimeout(() => {
+                        successAudio.play()
+                    }, 500);
+                };
+                $(firstCard).off('click');
+                $(secondCard).off('click');
+
+            } else {
+                // If two, non-matching cards have been flipped lock the board
+                lockBoard = true;
+
+
+                // Flip the cards back after 1.5 second delay and release the board
+                setTimeout(function() {
+                    failAudio.play()
+                    $(firstCard).removeClass('flipped');
+                    $(secondCard).removeClass('flipped');
+                    firstCard= null;
+                    secondCard= null;
+                    lockBoard = false;
+                }, 1000);
+
+            }
+        };
+
+    };
+
     
     // Fisher-Yates shuffle algorithm:
     function shuffleCards(imageArray) {
@@ -232,29 +241,23 @@
         // Place the images on the card front faces
         for(i = 0; i < imageArray.length; i++) {
             cardImage = imageArray[i];
-            $('.flip-card-front').eq(i).attr('src', cardImage);
+            $('.card__front-img').eq(i).attr('src', cardImage);
         }
      };
     
 
      /* TIMER FUNCTIONALITY */
-     function countDown(timeRemaining) {
+     function gameCounter(timeOnTheClock) {
 
         timer = setInterval(gameTimer, 1000);
 
          function gameTimer () {
             if(gameWonCond) stopTimer();
-            timeRemaining--;
-            if(timeRemaining >= 0  && !gameWonCond) {
-                $('.game-timer').html('Time: ' + timeRemaining);
-                timeOnTheClock = timeRemaining;
-            } 
-            // Game lost condition
-            if(timeRemaining === 0) {
-                alert('Game Over');
+            timeOnTheClock++;
+            $('.game-timer').html('Time: ' + timeOnTheClock);
+            totalTime = timeOnTheClock;
             }
         };
-    };
 
     function stopTimer() {
         clearInterval(timer);
@@ -280,11 +283,20 @@
     function gameWon() {
         $('.game-won').fadeIn(500);
         $('.btn-wrapper__game-won').fadeIn(500);
-        bonus = ( (timeRemaining - timeOnTheClock) * difficultyLevel ) * 10;
+
+        /* TO BE COMPLETED */
+        // New method of calculating bonus required!!
+        // bonus = ( (timeRemaining - timeOnTheClock) * difficultyLevel ) * 10;
+
         score = Math.floor( (imageArray.length / cardClick) * imageArray.length * 100 + bonus );
         $('.game-won__score').html('Score: ' + score);
+
+        console.log(cardClick);
+        console.log(totalTime);
+        // console.log(bonus);
         gameWonCond = true;
     };
+
 
     function resetGame() {
         $('.flip-card').removeClass('flipped');
@@ -292,11 +304,9 @@
         $('.btn-wrapper__game-won').fadeOut(500);
         lockBoard = false;
         gameWonCond = false;
-        timeRemaining = 0;
         cardClick = 0;
         $('.game-info > p:eq(2)').remove();
 
-        // All the conditions set out below need to be collected into a function
 
         $('.flip-card-game-container').css('display', 'none');
         $('.game-timer').css('display', 'none');
@@ -324,5 +334,3 @@
 
         gameSetup();
     };
-
-}(jQuery));

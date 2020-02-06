@@ -11,7 +11,7 @@
 <body>
 
     <!-- Create the buttons for the main menu and level select screens -->
-    <div class="btn-wrapper__main-menu">
+    <!-- <div class="btn-wrapper__main-menu">
         <div class="btn btn-primary btn__main-menu btn-selectLevel">Select level</div>
         <div class="btn btn-primary btn__main-menu btn-credits">Credits</div>
         <div class="btn btn-primary btn__main-menu btn-quit">Quit</div>
@@ -22,23 +22,131 @@
             <div class="btn btn-warning btn__level-select btn-intermediate">Intermediate</div>
             <div class="btn btn-danger btn__level-select btn-advanced">Advanced</div>
         </div>
-    </div>
+    </div> -->
 
-    <!-- Create the game board -->
-
-    <div class="game-info-container">
-        <div class="game-info">
-            <p>Match cards with the same image</p>
-            <p>There are six pairs</p>
+    <div class="main-page">
+        <h1 class="page-title">Psychometric Match</h1>
+        <div class="bg-img__wrapper">
+            <img id="main-page__bg-img" src="thinking.png" alt="">
         </div>
-        <div class="btn btn-primary btn__game-start">Start</div>
+        <div class="btn-wrapper__game-start">
+            <div class="btn btn-success btn-startGame">Start Game</div>
+        </div>
+
+
+        <!-- Create the game board -->
+        <div class="game-container">
+            <div class="game-info-container">
+                <div class="game-info">
+                    <div class="game-timer">Time: <span id="time-remaining"></span></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__front">
+                    <img src="" alt="" class="card__front-img">
+                </div>
+                <div class="card__back">
+                    <img src="" alt="" class="card__back-img">
+                </div>
+            </div>
+        </div>
     </div>
+
     
-    <div class="game-timer">Time: </div>
-    <div class="flip-card-game-container"></div>
+
+    
+    
 
     <!-- Create the game won board -->
-    <div class="game-won">
+    <!-- <div class="game-won">
         <div class="game-won__wrapper">
             <div class="game-won__info">You Win!</div>
             <div class="game-won__score">Score: </div>
@@ -47,7 +155,7 @@
                 <div class="btn btn-primary btn-playAgain__false">Quit</div>
             </div>
         </div>
-    </div>
+    </div> -->
     
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
