@@ -5,7 +5,10 @@
 }
 
 .bg-img__wrapper {
+    align-items: center;
     background-color: rgba(17, 73, 59, .7);
+    display: flex;
+    justify-content: center;
     overflow: hidden;
     position: absolute;
     height: 100%;
@@ -62,7 +65,7 @@
 }
 
 .game-info {
-    color: rgb(33, 133, 16);
+    color: rgba(17, 73, 59, .7);
     font-size: 1.5rem;
 }
 
@@ -79,6 +82,22 @@
     transform: translate(-50%, -50%);
 }
 
+.hud {
+    color: rgba(17, 73, 59, .7);
+    display: none;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5rem;
+    font-weight: normal;
+    justify-content: space-evenly;
+    left: 50%;
+    padding-top: 20px;
+    position: fixed;
+    text-align: center;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 10;
+}
+
 img {
     position: absolute;
     height: 100%;
@@ -93,14 +112,14 @@ img {
 }
 
 #main-page__bg-img {
-
-    left: 50%;
+    align-items: center;
+    animation: spinIn 1198ms ease-in forwards;
+    display: flex;
     height: 395px;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
     width: 315px;
 }
+
 
 .overlay-start {
     align-items: center;
@@ -114,7 +133,6 @@ img {
 }
 
 .page-title {
-    /* color: rgb(33, 133, 16); */
     color: white;
     font-family: 'Permanent Marker', cursive;
     font-size: 3rem;
@@ -128,6 +146,69 @@ img {
     z-index: 10;
 }
 
+.rules, .selectLevel {
+    display: inline;
+}
+
+.rules {
+    align-self: flex-start;
+}
+
+@keyframes spinIn {
+    from {
+        transform:  rotateY(-1080deg) scale(0.1) ;
+    }
+    to {
+        transform:  rotateY(0deg) scale(1) ;
+
+    }
+}
+
+@keyframes spinOut {
+    from {
+        transform:  rotateY(0deg) scale(1) ;
+    }
+    to {
+        transform:  rotateY(-1080deg) scale(0.1) ;
+    }
+}
+
+
+@keyframes spinInSpinOut {
+    0% {
+        transform:  rotateY(0deg) scale(1) ;
+    }
+    50% {
+        transform:  rotateY(-1080deg) scale(0.1) ;
+    }
+    100% {
+        transform:  rotateY(0deg) scale(1) ;
+    }
+}
+
+@keyframes noMatch {
+    0% {
+        left:  49.5%;
+    }
+    50% {
+        left: 50.5%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes match {
+    0% {
+        transform:  scale(1);
+    }
+    50% {
+       transform: scale(1.2);
+    }
+    100% {
+       transform: scale(1);
+    }
+}
 
 @media (max-width: 600px) {
     .game-container {

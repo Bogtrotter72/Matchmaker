@@ -1,4 +1,4 @@
-
+(function($) {
 
     let bonus = 0;
     let cardFlipped = false;
@@ -46,8 +46,17 @@
     // Reveal the game board and allow game play
     $('.btn-startGame').click(function() {
         $('.page-title').fadeOut('slow');
-        $('.bg-img__wrapper').fadeOut('slow');
-        $('.btn-wrapper__game-start').fadeOut('slow');
+        $('.hud').css('display', 'flex');
+        $('.hud').fadeIn('slow');
+
+        $('#main-page__bg-img').css('animation', 'spinOut 1198ms ease-in forwards');
+        $('.bg-img__wrapper').fadeOut(1198);
+        $('.btn-wrapper__game-start').fadeOut(1198);
+
+        // Delay calling the timer until the spinOut animation is complete
+        setTimeout(function() {
+            gameCounter(0);
+        }, 1198);
     })
 
 
@@ -77,13 +86,12 @@
     });
 
     // Fade out game info, fade in the game board and set the timer
-    $('.btn__game-start').click(function() {
-        $('.game-info-container').fadeOut('slow');
-        $('.flip-card-game-container').fadeIn(3000).css('display', 'flex');
-        $('.game-timer').fadeIn(3000);
+    // $('.btn__game-start').click(function() {
+    //     $('.game-info-container').fadeOut('slow');
+    //     $('.flip-card-game-container').fadeIn(3000).css('display', 'flex');
+    //     $('.game-timer').fadeIn(3000);
         
-        gameCounter(0);
-    });    
+    // });    
 
     $('.btn-playAgain__true').click(resetGame);
 
@@ -91,13 +99,17 @@
     /* GAME FUNCTIONALITY */
 
     function gameInit() {
+        $('#main-page__bg-img').animate({
+            transform: 'scale(1)'
+        }, 3000);
+    };
+
+    function gameSetup() {
+
         // Set the card back images
         $('.card__back-img').each(function() {
             $(this).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png');
         });
-    };
-
-    function gameSetup() {
 
         // Set the cards remaining value
         cardsRemaining = imageArray.length;
@@ -149,12 +161,13 @@
     function playGame() {
         // Prevent clicking if two, non-matching cards are already flipped
         if(lockBoard) return;
-        
 
         // Prevent double clicks
         if(this === firstCard) return;
 
-        flipAudio.play()
+        flipAudio.play();
+        $('.game-container').css('animation', 'none');
+
 
         // Flip the card
         $(this).addClass('flipped');
@@ -184,6 +197,10 @@
             // Do the flipped cards match
             if( checkForMatch() ) {
 
+                $(firstCard).css('animation', 'match 500ms ease-in-out');
+                $(secondCard).delay(250).css('animation', 'match 1000ms ease-in-out');
+
+
                 cardsRemaining -=2;
 
                 if (cardsRemaining === 0) {
@@ -204,9 +221,11 @@
                 // If two, non-matching cards have been flipped lock the board
                 lockBoard = true;
 
-
                 // Flip the cards back after 1.5 second delay and release the board
                 setTimeout(function() {
+                    $('.game-container').css('animation', 'noMatch 250ms ease-in-out');
+
+
                     failAudio.play()
                     $(firstCard).removeClass('flipped');
                     $(secondCard).removeClass('flipped');
@@ -249,6 +268,8 @@
      /* TIMER FUNCTIONALITY */
      function gameCounter(timeOnTheClock) {
 
+
+        // Delay timer start until animation end
         timer = setInterval(gameTimer, 1000);
 
          function gameTimer () {
@@ -263,26 +284,21 @@
         clearInterval(timer);
     };
     
-
-    // Layout functionality
-    function fourColumnLayout() {
-        $('.flip-card').css({
-            'height': 'calc(33.3333% - 10px)',
-            'width': 'calc(25% - 10px)'
-        });
-    };
-    
-    function threeColumnLayout() {
-        $('.flip-card').css({
-            'height': 'calc(25% - 10px)',
-            'width': 'calc(33.3333% - 10px)'
-        });
-    };
-    
     // Game win and reset
     function gameWon() {
+
+        $.each($('.card'), function() {
+            $(this).delay(250).css('animation', 'spinInSpinOut 2396ms ease-in forwards');
+            $(this).removeClass('flipped');
+        });
+
         $('.game-won').fadeIn(500);
         $('.btn-wrapper__game-won').fadeIn(500);
+
+        /* REPLACE THIS WITH A PLAY AGAIN BUTTON */
+        $('.btn-wrapper__game-start').fadeIn(1198);
+        resetGame();
+
 
         /* TO BE COMPLETED */
         // New method of calculating bonus required!!
@@ -299,12 +315,14 @@
 
 
     function resetGame() {
-        $('.flip-card').removeClass('flipped');
+        $('.card').removeClass('flipped');
         $('.game-won').fadeOut(500);
         $('.btn-wrapper__game-won').fadeOut(500);
         lockBoard = false;
         gameWonCond = false;
         cardClick = 0;
+        firstCard= null;
+        secondCard= null;
         $('.game-info > p:eq(2)').remove();
 
 
@@ -334,3 +352,4 @@
 
         gameSetup();
     };
+}(jQuery));
