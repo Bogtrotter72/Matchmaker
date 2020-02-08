@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Matchmaker</title>
@@ -25,23 +30,20 @@
     </div> -->
 
     <div class="main-page">
-        <h1 class="page-title">Psychometric Match</h1>
-        <div class="hud">
+        <h1 id="page-title">Psychometric Match</h1>
+        <div id="hud">
             <div class="rules">Rules</div>
             <div class="selectLevel">Select Level</div>
         </div>
-        <div class="bg-img__wrapper">
+        <div id="bg-img__wrapper">
             <img id="main-page__bg-img" src="thinking.png" alt="">
         </div>
-        <div class="btn-wrapper__game-start">
-            <div class="btn btn-success btn-startGame">Start Game</div>
+        <div id="btn-wrapper__game-start">
+            <div class="btn btn-success" id="btn-startGame">Start Game</div>
         </div>
 
-        
-
-
         <!-- Create the game board -->
-        <div class="game-container">
+        <div id="game-container">
             <div class="game-info-container">
                 <div class="game-info">
                     <div class="game-timer">Time: <span id="timeOnTheClock"></span></div>
@@ -49,119 +51,116 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_001_bhay28.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008484/Milestone%202/Final%20Images/Beginner_001__match_eyrmdw.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_002_xlg3f7.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_002__match_f57myd.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_003_o1jrd7.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008480/Milestone%202/Final%20Images/Beginner_003__match_lzysh0.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_004_rmtvyq.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_004__match_lp5lya.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_005_jkkwpo.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_005__match_ozvn4w.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_006_wimc5m.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
                 </div>
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="" alt="" class="card__front-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_006__match_vrisnb.png" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
-                    <img src="" alt="" class="card__back-img">
+                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Create the game won board -->
+        <div id="game-won">
+            <div class="game-won__wrapper">
+                <div class="game-won__info">You Win!</div>
+                <div class="game-won__score">Score: </div>
+                <div class="btn-wrapper__game-won">
+                    <div class="btn btn-success btn-playAgain__true">Play Again</div>
+                    <div class="btn btn-primary btn-playAgain__false">Quit</div>
                 </div>
             </div>
         </div>
     </div>
 
-    
-
-    
-    
-
-    <!-- Create the game won board -->
-    <!-- <div class="game-won">
-        <div class="game-won__wrapper">
-            <div class="game-won__info">You Win!</div>
-            <div class="game-won__score">Score: </div>
-            <div class="btn-wrapper__game-won">
-                <div class="btn btn-success btn-playAgain__true">Play Again</div>
-                <div class="btn btn-primary btn-playAgain__false">Quit</div>
-            </div>
-        </div>
-    </div> -->
     
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

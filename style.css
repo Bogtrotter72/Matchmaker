@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-.bg-img__wrapper {
+#bg-img__wrapper {
     align-items: center;
     background-color: rgba(17, 73, 59, .7);
     display: flex;
@@ -16,7 +16,7 @@
     z-index: 1;
 }
 
-.btn-wrapper__game-start {
+#btn-wrapper__game-start {
     left: 50%;
     position: absolute;
     top: 70%;
@@ -60,16 +60,7 @@
     transform: rotateY(0deg);
 }
 
-.game-info-container {
-    grid-column: 1 / -1;
-}
-
-.game-info {
-    color: rgba(17, 73, 59, .7);
-    font-size: 1.5rem;
-}
-
-.game-container {
+#game-container {
     align-items: center;
     display: grid;
     grid-template-columns: repeat(4, auto);
@@ -82,7 +73,38 @@
     transform: translate(-50%, -50%);
 }
 
-.hud {
+.game-info {
+    color: rgba(17, 73, 59, .7);
+    font-size: 1.5rem;
+}
+
+.game-info-container {
+    grid-column: 1 / -1;
+}
+
+#game-won {
+    align-items: center;
+    color: white;
+    display: none;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    font-weight: normal;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.btn-playAgain__true {
+    display: block;
+    margin-top: 150px;
+    margin-bottom: 20px;
+}
+
+#hud {
     color: rgba(17, 73, 59, .7);
     display: none;
     font-family: 'Permanent Marker', cursive;
@@ -132,7 +154,7 @@ img {
     position: fixed;
 }
 
-.page-title {
+#page-title {
     color: white;
     font-family: 'Permanent Marker', cursive;
     font-size: 3rem;
@@ -153,6 +175,11 @@ img {
 .rules {
     align-self: flex-start;
 }
+
+
+
+
+/* ANIMATIONS */
 
 @keyframes spinIn {
     from {
@@ -210,6 +237,8 @@ img {
     }
 }
 
+
+/* MEDIA QUERIES */
 @media (max-width: 600px) {
     .game-container {
         grid-template-columns: repeat(2, auto);
