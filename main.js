@@ -26,7 +26,6 @@ class AudioController {
 class PsychoMatch{
     constructor(cards) {
         this.cardsArray = cards;
-        
         this.beginnerImgs = ['_001', '_002', '_003', '_004', '_005', '_006'];
         this.audioController = new AudioController();
     }
@@ -40,11 +39,11 @@ class PsychoMatch{
         this.score = 0;
         this.secondCard = null;
         this.startTime = 0;
+        this.resetCards();
         setTimeout( ()=> {
             this.shuffleCards();
             this.counter = this.gameCounter(this.startTime);
         }, 500);
-        this.resetCards();
     }
     resetCards() {
         this.cardsArray.forEach(card => {
@@ -56,7 +55,6 @@ class PsychoMatch{
     gameCounter(time) {
         return setInterval( () => {
             time++;
-            if(time === 5) this.gameOver();
             $('.game-timer').html('Time: ' + time);
             this.totalTime = time;
         }, 1000);
@@ -64,29 +62,87 @@ class PsychoMatch{
     }
     flipCard(card) {
         if(this.lockBoard) return;
-
         if(card === this.firstCard) return;
+
+
+        // Set initial state of noMatch animation
+        $("#game-container").css("animation", "none");
+
 
         card.classList.add("flipped");
         this.audioController.cardFlip();
 
         this.cardClicks++;
-        
+
+        if(!this.cardFlipped) {
+            this.cardFlipped = true;
+            this.firstCard = card;
+            this.firstCardSrc = this.firstCard.firstElementChild.firstElementChild.src;
+
+            for(let i = 0; i < this.beginnerImgs.length; i++)  {
+                if(this.firstCardSrc.includes("Beginner" + this.beginnerImgs[i])) {
+                    this.firstCardSrc = this.beginnerImgs[i];
+                }
+            }
+
+        } else {
+            this.cardFlipped = false;
+            this.secondCard = card;
+            this.secondCardSrc = this.secondCard.firstElementChild.firstElementChild.src;
+
+            for(let i = 0; i < this.beginnerImgs.length; i++)  {
+                if(this.secondCardSrc.includes("Beginner" + this.beginnerImgs[i])) {
+                    this.secondCardSrc = this.beginnerImgs[i];
+                }
+            }
+
+            if(this.firstCardSrc === this.secondCardSrc) {
+                this.cardsMatch();
+            } else {
+                this.cardsNoMatch();
+            }
+        }
+    }
+    cardsMatch() {
+        this.firstCard.style.animation = "match 500ms ease-in-out";
+        this.secondCard.style.animation = "match 500ms ease-in-out";
+        this.cardsRemaining -= 2;
+
+        if(this.cardsRemaining === 0) {
+            setTimeout( () => {
+                this.audioController.gameWin();
+                this.gameOver();
+            }, 500);
+        } else {
+            setTimeout( () => {
+                this.audioController.cardMatch();
+            }, 500);
+        }
+        $(this.firstCard).off('click');
+        $(this.secondCard).off('click');
+    }
+    cardsNoMatch() {
+        this.lockBoard = true;
+        this.gameContainer = $('#game-container');
+
+        setTimeout( () => {
+            $("#game-container").css("animation", "noMatch 250ms ease-in-out");
+            this.audioController.cardNoMatch();
+            this.firstCard.classList.remove("flipped");
+
+            // Reset this.firstCard so that it can be selected again
+            this.firstCard = null;
+            this.secondCard.classList.remove("flipped");
+            this.lockBoard = false;
+        }, 1000);
     }
     gameOver() {
         clearInterval(this.counter);
-        this.gameWonModal = document.getElementById("game-won");
-        this.fadeIn = 0;
-        this.time = setInterval( () => {
-            if(this.fadeIn === 10) {
-                clearInterval(this.time);
-            } else {
-                this.fadeIn += 1;
-                this.gameWonModal.style.opacity = this.fadeIn/10;
-                this.gameWonModal.style.display = "flex";
-            }
-        }, 120);
-
+        $.each($('.card'), function () {
+            $(this).removeClass('flipped');
+            $(this).delay(350).css('animation', 'spinInSpinOut 2396ms ease-in');
+        });
+        $("#game-won").fadeIn(1198).css("display", "block");
     }
     shuffleCards() {
         for (let i = this.cardsArray.length-1; i > 0;  i--) {
@@ -97,134 +153,60 @@ class PsychoMatch{
     }
 }
 
+function quitGame() {
+    console.log("Quit");
+};
 
 function gameInit() {
 
-    let cards = Array.from(document.getElementsByClassName('card'));
+    let buttons = $.makeArray($(".btn-start") );
+    let cards = $.makeArray($('.card'));
     cardsRemaining = cards.length;
 
     let game = new PsychoMatch(cards);
     
-    
-    document.getElementById("btn-startGame").addEventListener('click', () => {
-        let startBtn = document.getElementById("btn-startGame");
-        let startBtnWrap = document.getElementById("btn-wrapper__game-start");
-        let pageTitle = document.getElementById("page-title");
-        let bgImgWrap = document.getElementById("bg-img__wrapper");
+    buttons.forEach(button => {
+        $(button).click( () => {
 
+            $("#btn-playAgain__true").dblclick(false);
 
-        let fadeOut = 10;
-    
-        let time = setInterval( () => {
-            if(fadeOut === 0) {
-                clearInterval(time);
-            } else {
-                fadeOut -= 1;
-                startBtn.style.opacity = fadeOut/10;
-                startBtnWrap.style.opacity = fadeOut/10;
-                pageTitle.style.opacity = fadeOut/10;
-                bgImgWrap.style.opacity = fadeOut/10;
-                if (pageTitle.style.opacity === "0") {
-                    pageTitle.style.display = "none";
-                    startBtnWrap.style.display = "none";
-                    bgImgWrap.style.display = "none";
+            let buttonType = ($(button)[0]);
+            if (($(buttonType)).prop("id") == "btn-startGame") {
+                $("#main-page__bg-img").css("animation", "spinOut 1198ms ease-in forwards");           
+                $("#btn-startGame").fadeOut(1198);
+                $("#btn-wrapper__game-start").fadeOut(1198);
+                $("#page-title").fadeOut(1198);
+                $("#bg-img__wrapper").fadeOut(1198);
+
+                if ($("#page-title").css("opacity") === "0") {
+                    $("#page-title").css("display", "none");
+                    $("#btn-wrapper__game-start").css("display", "none");
+                    $("#bg-img__wrapper").css("display", "none");
                 };
-            }
-        }, 120);
-    
-        let hudDisplay = document.getElementById("hud");
-        let fadeIn = 0;
-        let time2 = setInterval( () => {
-            if(fadeIn === 10) {
-                clearInterval(time2);
-            } else {
-                fadeIn += 1;
-                hudDisplay.style.opacity = fadeIn/10;
-                hudDisplay.style.display = "flex";
-            }
-        }, 120);
-    
-        document.getElementById("main-page__bg-img").style.animation = "spinOut 1198ms ease-in forwards";
-        game.startGame();
 
-    });
+                $("#hud").fadeIn(1198);
+                $('#hud').css("display", "flex").delay(100);
+
+            } else {
+                $("#game-won").delay(1000).fadeOut(1000).css("display", "none");
+            };
+
+
+            setTimeout( () => {
+                button.classList.remove("visible");
+            }, 1500);
+
+            game.startGame();
+        })
+    })
     
     cards.forEach(card => {
         card.addEventListener('click', () => {
             game.flipCard(card);            
         })
     });
+    return cards;
 
 };
 
 document.addEventListener("DOMContentLoaded", gameInit());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// if(!this.cardFlipped) {
-//     this.cardFlipped = true;
-//     this.firstCard = card;
-//     this.firstCardSrc = this.firstCard.firstElementChild.firstElementChild.src;
-// } else {
-//     this.cardFlipped = false;
-//     this.secondCard = card;
-//     this.secondCardSrc = this.secondCard.firstElementChild.firstElementChild.src;
-
-
-//     function checkForMatch() {
-//         for (let i = 0; i < this.beginnerImgs.length; i++) {
-//             if (this.firstCardSrc.includes('Beginner' + this.beginnerImgs[i]) && this.secondCardSrc.includes('Beginner' + this.beginnerImgs[i])) {
-//                 console.log('true');
-//                 return true;
-//             }
-//         }
-//     };
-
-//     if(checkForMatch) {
-//         this.firstCard.style.animation = "match 500ms ease-in-out";
-//         this.secondCard.style.animation = "match 500ms ease-in-out";
-        
-//         cardsRemaining -= 2;
-
-//         if (cardsRemaining === 0) {
-//             gameWonCond = true;
-//             setTimeout(() => {
-//                 this.audioController.gameWin();
-//             }, 500);
-//             gameWon();
-//         } else {
-//             setTimeout(() => {
-//                 this.audioController.cardMatch();
-//             }, 500);
-//         };
-//         this.firstCard.removeEventListener("click", cardCheck(), false);
-//         this.secondCard.removeEventListener("click", cardCheck(), false);
-//     } else {
-//         this.lockBoard = true;
-
-//         setTimeout(() => {
-//             this.gameContainer = document.getElementById();
-//             this.gameContainer.style.animation = "noMatch 250ms ease-in-out";
-//             this.audioController.noMatch();
-
-
-//             this.firstCard.removeClass('flipped');
-//             this.secondCard.removeClass('flipped');
-//             this.lockBoard = false;
-//         }, 1000);
-//     };
-    
-// }
