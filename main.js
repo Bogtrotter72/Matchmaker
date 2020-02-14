@@ -142,7 +142,13 @@ class PsychoMatch{
             $(this).removeClass('flipped');
             $(this).delay(350).css('animation', 'spinInSpinOut 2396ms ease-in');
         });
+
+        // Calculate the score
+        this.score = Math.floor((this.cardsArray.length / this.cardClicks) * this.cardsArray.length * 100);
+
         $("#game-won").fadeIn(1198).css("display", "block");
+        $('.game-won__score').html('Score: ' + this.score);
+
     }
     shuffleCards() {
         for (let i = this.cardsArray.length-1; i > 0;  i--) {
@@ -153,9 +159,9 @@ class PsychoMatch{
     }
 }
 
-function quitGame() {
+$("#btn-playAgain__false").click(() => {
     console.log("Quit");
-};
+});
 
 function gameInit() {
 
@@ -187,8 +193,9 @@ function gameInit() {
                 $("#hud").fadeIn(1198);
                 $('#hud').css("display", "flex").delay(100);
 
-            } else {
-                $("#game-won").delay(1000).fadeOut(1000).css("display", "none");
+            } 
+            if (($(buttonType)).prop("id") == "btn-playAgain__true") {
+                $("#game-won").delay(1000).fadeOut(1000).css("display", "none");              
             };
 
 

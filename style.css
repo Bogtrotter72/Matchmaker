@@ -3,6 +3,13 @@
     margin: 0;
     padding: 0;
 }
+a {
+    color: white;
+}
+
+a:hover, a:link, a:visited {
+    text-decoration: none;
+}
 
 #bg-img__wrapper {
     align-items: center;
@@ -10,16 +17,22 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
     z-index: 1;
 }
 
+#btn-playAgain__true {
+    display: block;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
 #btn-wrapper__game-start {
     left: 50%;
-    position: absolute;
-    top: 70%;
+    position: fixed;
+    top: 80%;
     transform: translateX(-50%);
     z-index: 3;
 }
@@ -27,12 +40,12 @@
 .card {
     background-color: transparent;
     border: none;
-    height: 225px;
+    height: 150px;
     overflow: hidden;
     position: relative;
     transform: scale(1);
     transition: transform 0.3s;
-    width: 150px;
+    width: 90px;
 }
 
 .card__front, .card__back {
@@ -63,14 +76,15 @@
 #game-container {
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(3, auto);
     grid-gap: 10px;
     justify-content: center;
     left: 50%;
+    padding-bottom: 5px;
     perspective: 1500px;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 15%;
+    transform: translate(-50%, 0%);
 }
 
 .game-info {
@@ -82,6 +96,10 @@
     grid-column: 1 / -1;
 }
 
+.game-timer {
+    font-size: 1rem;
+}
+
 #game-won {
     align-items: center;
     color: white;
@@ -91,17 +109,11 @@
     font-weight: normal;
     justify-content: center;
     left: 50%;
-    position: absolute;
+    position: fixed;
     text-align: center;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-}
-
-#btn-playAgain__true {
-    display: block;
-    margin-top: 150px;
-    margin-bottom: 20px;
 }
 
 #hud {
@@ -113,7 +125,7 @@
     justify-content: space-evenly;
     left: 50%;
     padding-top: 20px;
-    position: fixed;
+    position: absolute;
     text-align: center;
     transform: translateX(-50%);
     width: 100%;
@@ -127,20 +139,27 @@ img {
 }
 
 .main-page {
+    height: 100vh;
+    position: relative;
+}
+
+#main-page__background {
     background-image: url("https://res.cloudinary.com/bogtrotter72/image/upload/v1581001491/Milestone%202/Placeholder%20Images/Page_Background_z9vuto-Sharpened_vagovc.png");
     background-size: cover;
     height: 100vh;
-    position: relative;
+    position: fixed;
+    width: 100%;
 }
 
 #main-page__bg-img {
     align-items: center;
     animation: spinIn 1198ms ease-in forwards;
-    height: 395px;
+    height: 300px;
+    left: 12%;
     position: absolute;
-    width: 315px;
+    top: 20%;
+    width: 240px;
 }
-
 
 .modal-text {
     align-items: center;
@@ -161,7 +180,7 @@ img {
 #page-title {
     color: white;
     font-family: 'Permanent Marker', cursive;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: normal;
     padding-top: 20px;
     position: fixed;
@@ -237,7 +256,7 @@ img {
         transform:  scale(1);
     }
     50% {
-       transform: scale(1.2);
+       transform: scale(0.8);
     }
     100% {
        transform: scale(1);
@@ -246,8 +265,48 @@ img {
 
 
 /* MEDIA QUERIES */
-@media (max-width: 600px) {
-    .game-container {
-        grid-template-columns: repeat(2, auto);
+@media only screen and (orientation: landscape) {
+    #game-container {
+        grid-template-columns: repeat(4, auto);
+    }
+}
+
+@media only screen and (min-width: 360px) {
+    #main-page__bg-img {
+        left: 18%;
+        top: 30%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    #btn-wrapper__game-start {
+        top: 65%;
+    }
+
+    .card {
+        height: 225px;
+        overflow: hidden;
+        position: relative;
+        transform: scale(1);
+        transition: transform 0.3s;
+        width: 150px;
+    }
+
+    #game-container {
+        grid-template-columns: repeat(4, auto);
+        top: 10%;
+    }
+
+    .game-timer {
+        font-size: 1.5rem;
+    }
+
+    #main-page__bg-img {
+        height: 395px;
+        left: 42%;
+        position: absolute;
+        top: 27%;
+        width: 315px;
     }
 }
