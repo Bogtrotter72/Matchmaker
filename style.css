@@ -304,9 +304,38 @@ img {
 
     #main-page__bg-img {
         height: 395px;
-        left: 42%;
+        left: 30%;
         position: absolute;
         top: 27%;
         width: 315px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .card {
+        height: 305px;
+        width: 200px;
+    }
+
+    #main-page__bg-img {
+        height: 450px;
+        left: 30%;
+        top: 25%;
+        width: 400px;
+    }
+
+    #page-title {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #game-container {
+        top: 7%;
+    }
+
+    #main-page__bg-img {
+        left: 40%;
     }
 }
