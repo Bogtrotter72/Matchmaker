@@ -81,6 +81,8 @@ class PsychoMatch{
         this.audioController.cardFlip();
 
         this.cardClicks++;
+        $('.game-click').html('Moves: ' + this.cardClicks);
+
 
         if(!this.cardFlipped) {
             this.cardFlipped = true;
@@ -145,7 +147,10 @@ class PsychoMatch{
         }, 1000);
     }
     gameOver() {
+        // Stop the clock
         clearInterval(this.counter);
+
+        // Play the game over / game start animation
         $.each($('.card'), function () {
             $(this).removeClass('flipped');
             $(this).delay(350).css('animation', 'spinInSpinOut 2396ms ease-in');
@@ -179,8 +184,14 @@ $("#btn-playAgain__false").click(() => {
 
 function gameInit() {
 
+    // Make an array for the game start buttons and the game cards
     let buttons = $.makeArray($(".btn-start") );
     let cards = $.makeArray($('.card'));
+
+    // Initialize the game end scenario
+    cardsRemaining = cards.length;
+
+    // Intial sound conditions (Game start audio & mute / unmute functions)
     let gameStartAudio = new Audio("game-start.mp3");
 
     $("#soundOn").click(function() {
@@ -195,16 +206,16 @@ function gameInit() {
         game.playSound();
     });
 
-    cardsRemaining = cards.length;
 
+    // Create a new game instance
     let game = new PsychoMatch(cards);
     
+    // Add click event listeners to the game start buttons and assign differing responses depending on which button was clicked
     buttons.forEach(button => {
         $(button).click( () => {
-
-
             $("#btn-playAgain__true").dblclick(false);
 
+            // Start the game
             let buttonType = ($(button)[0]);
             if (($(buttonType)).prop("id") == "btn-startGame") {
                 gameStartAudio.play();
@@ -219,30 +230,41 @@ function gameInit() {
                     $("#btn-wrapper__game-start").css("display", "none");
                     $("#bg-img__wrapper").css("display", "none");
                 };
-
                 $("#hud").fadeIn(1198);
                 $('#hud').css("display", "flex").delay(100);
+            }
 
-            } 
+            // Check if 'Play Again' clicked and reset the board for a new game
             if (($(buttonType)).prop("id") == "btn-playAgain__true") {
                 setTimeout(() => {
                     gameStartAudio.play();
                     $("#game-won").fadeOut(500).css("display", "none");
                 }, 100);
-                $('.game-timer').html('Time: '); 
+                $('.game-timer').html('Time: ');
+                $('.game-click').html('Moves: ');
             };
 
-
+            // Play the card animation to signify game start
             setTimeout( () => {
                 $(".card").css("animation", "spinInSpinOut 2400ms ease-in");
                 button.classList.remove("visible");
             }, 750);
 
             game.startGame();
-
         })
     })
     
+    // Show the game rules and prevent multiple mouse event triggers
+    $(".rules").mouseover(function () { 
+        $("#rules").stop().fadeIn(250);
+    });
+
+    $(".rules").mouseout(function () { 
+        // $("#rules").stop().fadeIn(250);
+        $("#rules").stop().fadeOut(500);
+    });
+
+    // Add click event listeners to the card
     cards.forEach(card => {
         card.addEventListener('click', () => {
             game.flipCard(card);            

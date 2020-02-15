@@ -89,16 +89,21 @@ a:hover, a:link, a:visited {
 
 .game-info {
     color: rgba(17, 73, 59, .7);
-    font-size: 1.5rem;
+    display: flex;
+    font-size: 0.7rem;
 }
 
 .game-info-container {
-    grid-column: 1 / -1;
+    position: absolute;
+    left: 7%;
+    top: 9%;
+    width: 80%;
 }
 
-.game-timer {
-    font-size: 1rem;
+.game-click {
+    margin-left: auto;
 }
+
 
 #game-won {
     align-items: center;
@@ -120,7 +125,7 @@ a:hover, a:link, a:visited {
     color: rgba(17, 73, 59, .7);
     display: none;
     font-family: 'Permanent Marker', cursive;
-    font-size: 1.5rem;
+    font-size: 0.7rem;
     font-weight: normal;
     justify-content: space-evenly;
     left: 50%;
@@ -197,6 +202,20 @@ img {
 
 .rules {
     align-self: flex-start;
+}
+
+#rules {
+    display: none;
+    background: rgb(137,65,117);
+    border: 5px solid rgb(108,171,102);
+    border-radius: 20px;
+    color: rgb(108,171,102);
+    font-size: 0.6rem;
+    left: 10%;
+    padding: 5px;
+    position: absolute;
+    text-align: left;
+    width: 30%;
 }
 
 #soundOff {
@@ -335,8 +354,8 @@ img {
 @media only screen and (min-width: 1024px) {
 
     .card {
-        height: 260px;
-        width: 170px;
+        height: 220px;
+        width: 140px;
     }
 
     #main-page__bg-img {
@@ -352,6 +371,7 @@ img {
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
+
     #main-page__bg-img {
         height: 250px;
         left: 39%;
@@ -379,7 +399,15 @@ img {
     }
 }
 
-@media only screen and (min-width: 1824px) {
+@media only screen and (min-width: 1440px) {
+    .card {
+        height: 250px;
+        width: 160px;
+    }
+
+    #game-container {
+        top: 10%;
+    }
 
     #main-page__bg-img {
         height: 400px;

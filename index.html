@@ -27,7 +27,10 @@
     <div class="main-page">
         <h1 id="page-title">Psychometric Match</h1>
         <div id="hud">
-            <div class="rules">Rules</div>
+            <div class="rules">
+                Rules
+                <span id="rules">Match pairs of cards in the shortest amount of time and least number of moves.</span>
+            </div>
             <i class="fas fa-volume-up" id="soundOn"></i>
             <i class="fas fa-volume-mute" id="soundOff"></i>
             <div class="selectLevel">Select Level</div>
@@ -39,14 +42,15 @@
             <div class="btn btn-success btn-start" id="btn-startGame">Start Game</div>
         </div>
         
+        <div class="game-info-container">
+            <div class="game-info">
+                <div class="game-timer">Time: <span id="timeOnTheClock"></span></div>
+                <div class="game-click">Moves: <span id="cardClicks"></span></div>
+            </div>
+        </div>
 
         <!-- Create the game board -->
         <div id="game-container">
-            <div class="game-info-container">
-                <div class="game-info">
-                    <div class="game-timer">Time: <span id="timeOnTheClock"></span></div>
-                </div>
-            </div>
             <div class="card">
                 <div class="card__front">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_001_bhay28.png" alt="" class="card__front-img">
