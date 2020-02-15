@@ -95,7 +95,8 @@ a:hover, a:link, a:visited {
 .game-info {
     color: rgba(17, 73, 59, .7);
     display: flex;
-    font-size: 1rem;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 0.8rem;
 }
 
 .game-info-container {
@@ -295,6 +296,17 @@ img {
 @media only screen and (orientation: landscape) {
     #game-container {
         grid-template-columns: repeat(4, auto);
+        top: 25%;
+    }
+
+    .game-info-container {
+        left: 16%;
+        top: 16%;
+        width: 65%;
+    }
+
+    #game-won {
+        font-size: 1.7rem;
     }
 }
 
@@ -356,6 +368,20 @@ img {
 }
 
 @media only screen and (min-width: 768px) and (orientation: landscape) {
+
+    .card {
+        height: 200px;
+        width: 130px;
+    }
+
+    #game-container {
+        top: 25%;
+    }
+
+    .game-info-container {
+        top: 14%;
+    }
+
     #main-page__bg-img {
         height: 150px;
         left: 42%;
@@ -383,6 +409,7 @@ img {
     }
 }
 
+/* iPhone X landscape settings */
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
 
     #main-page__bg-img {

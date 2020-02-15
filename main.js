@@ -53,7 +53,7 @@ class PsychoMatch{
         setTimeout( ()=> {
             this.shuffleCards();
             this.counter = this.gameCounter(this.startTime);
-        }, 3000);
+        }, 2000);
     }
     resetCards() {
         this.cardsArray.forEach(card => {
@@ -253,7 +253,7 @@ function gameInit() {
 
             // Play the card animation to signify game start
             setTimeout( () => {
-                $(".card").css("animation", "spinInSpinOut 2400ms ease-in");
+                $(".card").css("animation", "spinInSpinOut 1800ms ease-in");
                 button.classList.remove("visible");
             }, 750);
 
