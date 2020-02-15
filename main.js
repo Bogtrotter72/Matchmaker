@@ -45,6 +45,7 @@ class PsychoMatch{
         this.cardsRemaining = this.cardsArray.length;
         this.firstCard = null;
         this.lockBoard = false;
+        this.matchedCards = [];
         this.score = 0;
         this.secondCard = null;
         this.startTime = 0;
@@ -71,6 +72,7 @@ class PsychoMatch{
     flipCard(card) {
         if(this.lockBoard) return;
         if(card === this.firstCard) return;
+        if(this.matchedCards.includes(card)) return;
 
 
         // Set initial state of noMatch animation
@@ -128,7 +130,9 @@ class PsychoMatch{
                 this.audioController.cardMatch();
             }, 500);
         }
+        this.matchedCards.push(this.firstCard);
         $(this.firstCard).off('click');
+        this.matchedCards.push(this.secondCard);
         $(this.secondCard).off('click');
     }
     cardsNoMatch() {
@@ -237,7 +241,10 @@ function gameInit() {
             // Check if 'Play Again' clicked and reset the board for a new game
             if (($(buttonType)).prop("id") == "btn-playAgain__true") {
                 setTimeout(() => {
-                    gameStartAudio.play();
+                    // Check if sound is muted
+                    if($(".fa-volume-mute").attr("style")!=="display: inline;") {
+                        gameStartAudio.play();
+                    }
                     $("#game-won").fadeOut(500).css("display", "none");
                 }, 100);
                 $('.game-timer').html('Time: ');

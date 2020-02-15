@@ -73,6 +73,11 @@ a:hover, a:link, a:visited {
     transform: rotateY(0deg);
 }
 
+.fas{
+    align-items: center;
+    display: flex;
+}
+
 #game-container {
     align-items: center;
     display: grid;
@@ -83,21 +88,21 @@ a:hover, a:link, a:visited {
     padding-bottom: 5px;
     perspective: 1500px;
     position: absolute;
-    top: 15%;
+    top: 20%;
     transform: translate(-50%, 0%);
 }
 
 .game-info {
     color: rgba(17, 73, 59, .7);
     display: flex;
-    font-size: 0.7rem;
+    font-size: 1rem;
 }
 
 .game-info-container {
     position: absolute;
-    left: 7%;
-    top: 9%;
-    width: 80%;
+    left: 11%;
+    top: 11%;
+    width: 75%;
 }
 
 .game-click {
@@ -125,7 +130,7 @@ a:hover, a:link, a:visited {
     color: rgba(17, 73, 59, .7);
     display: none;
     font-family: 'Permanent Marker', cursive;
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: normal;
     justify-content: space-evenly;
     left: 50%;
@@ -210,12 +215,12 @@ img {
     border: 5px solid rgb(108,171,102);
     border-radius: 20px;
     color: rgb(108,171,102);
-    font-size: 0.6rem;
-    left: 10%;
+    font-size: 1rem;
+    left: 5%;
     padding: 5px;
     position: absolute;
     text-align: left;
-    width: 30%;
+    width: 50%;
 }
 
 #soundOff {
@@ -329,7 +334,15 @@ img {
         top: 10%;
     }
 
-    .game-timer {
+    .game-info {
+        font-size: 1.5rem;
+    }
+
+    .game-info-container {
+        top: 5%;
+    }
+
+    #hud {
         font-size: 1.5rem;
     }
 
@@ -354,8 +367,8 @@ img {
 @media only screen and (min-width: 1024px) {
 
     .card {
-        height: 220px;
-        width: 140px;
+        height: 340px;
+        width: 210px;
     }
 
     #main-page__bg-img {
@@ -380,9 +393,21 @@ img {
     }
 }
 
-@media only screen and (min-width: 1200px) {
+/* Laptop-S & Laptop-M settings */
+@media only screen and (min-width: 1280px) {
+    .card {
+        height: 200px;
+        width: 150px;
+    }
+
     #game-container {
-        top: 7%;
+        top: 15%;
+    }
+
+    .game-info-container {
+        left: 26%;
+        top: 8%;
+        width: 45%;
     }
 
     #main-page__bg-img {
@@ -390,23 +415,22 @@ img {
     }
 }
 
-@media only screen and (min-width: 1200px) and (orientation: landscape) {
-    #main-page__bg-img {
-        height: 350px;
-        left: 38%;
-        top: 25%;
-        width: 320px;
-    }
-}
-
 @media only screen and (min-width: 1440px) {
+    #btn-playAgain__true, #btn-playAgain__false {
+        font-size: 2rem;
+    }
+
     .card {
-        height: 250px;
-        width: 160px;
+        height: 290px;
+        width: 190px;
     }
 
     #game-container {
-        top: 10%;
+        top: 15%;
+    }
+
+    #game-won {
+        font-size: 3rem;
     }
 
     #main-page__bg-img {
