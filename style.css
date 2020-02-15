@@ -199,6 +199,9 @@ img {
     align-self: flex-start;
 }
 
+#soundOff {
+    display: none;
+}
 
 
 
@@ -278,6 +281,15 @@ img {
     }
 }
 
+@media only screen and (min-width: 360px) and (orientation: landscape) {
+    #main-page__bg-img {
+        height: 150px;
+        left: 40%;
+        top: 25%;
+        width: 130px;
+    }
+}
+
 @media only screen and (min-width: 768px) {
 
     #btn-wrapper__game-start {
@@ -311,22 +323,40 @@ img {
     }
 }
 
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+    #main-page__bg-img {
+        height: 150px;
+        left: 42%;
+        top: 25%;
+        width: 130px;
+    }
+}
+
 @media only screen and (min-width: 1024px) {
 
     .card {
-        height: 305px;
-        width: 200px;
+        height: 260px;
+        width: 170px;
     }
 
     #main-page__bg-img {
-        height: 450px;
+        height: 430px;
         left: 30%;
         top: 25%;
-        width: 400px;
+        width: 380px;
     }
 
     #page-title {
         font-size: 4rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+    #main-page__bg-img {
+        height: 250px;
+        left: 39%;
+        top: 25%;
+        width: 220px;
     }
 }
 
@@ -337,5 +367,23 @@ img {
 
     #main-page__bg-img {
         left: 40%;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (orientation: landscape) {
+    #main-page__bg-img {
+        height: 350px;
+        left: 38%;
+        top: 25%;
+        width: 320px;
+    }
+}
+
+@media only screen and (min-width: 1824px) {
+
+    #main-page__bg-img {
+        height: 400px;
+        left: 41%;
+        width: 350px;
     }
 }

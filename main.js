@@ -1,13 +1,10 @@
 class AudioController {
     constructor() {
         this.successAudio = new Audio('Success.mp3');
-        this.successAudio.volume = 0.5;
         this.failAudio = new Audio('Failure.mp3');
-        this.failAudio.volume = 0.3;
         this.winAudio = new Audio('Game-win.mp3');
-        this.winAudio.volume = 0.5;
         this.flipAudio = new Audio('card-flip.mp3');
-        this.flipAudio.volume = 0.5;
+        this.playSound();
     }
     cardFlip() {
         this.flipAudio.play();
@@ -20,6 +17,18 @@ class AudioController {
     }
     gameWin() {
         this.winAudio.play();
+    }
+    playSound() {
+        this.successAudio.volume = 0.5;
+        this.failAudio.volume = 0.3;
+        this.winAudio.volume = 0.5;
+        this.flipAudio.volume = 0.5;
+    }
+    muteSound() {
+        this.successAudio.volume = 0;
+        this.failAudio.volume = 0;
+        this.winAudio.volume = 0;
+        this.flipAudio.volume = 0;
     }
 }
 
@@ -43,7 +52,7 @@ class PsychoMatch{
         setTimeout( ()=> {
             this.shuffleCards();
             this.counter = this.gameCounter(this.startTime);
-        }, 500);
+        }, 3000);
     }
     resetCards() {
         this.cardsArray.forEach(card => {
@@ -51,7 +60,6 @@ class PsychoMatch{
             card.style.animation = "none";
         })
     }
-
     gameCounter(time) {
         return setInterval( () => {
             time++;
@@ -157,6 +165,12 @@ class PsychoMatch{
             this.cardsArray[i].style.order = randIndex;
         }
     }
+    playSound() {
+        this.audioController.playSound();
+    }
+    muteSound() {
+        this.audioController.muteSound();
+    }
 }
 
 $("#btn-playAgain__false").click(() => {
@@ -167,6 +181,20 @@ function gameInit() {
 
     let buttons = $.makeArray($(".btn-start") );
     let cards = $.makeArray($('.card'));
+    let gameStartAudio = new Audio("game-start.mp3");
+
+    $("#soundOn").click(function() {
+        $("#soundOn").fadeOut(600);
+        $("#soundOff").delay(600).fadeIn(600);
+        game.muteSound();
+    });
+
+    $("#soundOff").click(function() {
+        $("#soundOff").fadeOut(600);
+        $("#soundOn").delay(600).fadeIn(600);
+        game.playSound();
+    });
+
     cardsRemaining = cards.length;
 
     let game = new PsychoMatch(cards);
@@ -174,10 +202,12 @@ function gameInit() {
     buttons.forEach(button => {
         $(button).click( () => {
 
+
             $("#btn-playAgain__true").dblclick(false);
 
             let buttonType = ($(button)[0]);
             if (($(buttonType)).prop("id") == "btn-startGame") {
+                gameStartAudio.play();
                 $("#main-page__bg-img").css("animation", "spinOut 1198ms ease-in forwards");           
                 $("#btn-startGame").fadeOut(1198);
                 $("#btn-wrapper__game-start").fadeOut(1198);
@@ -195,15 +225,21 @@ function gameInit() {
 
             } 
             if (($(buttonType)).prop("id") == "btn-playAgain__true") {
-                $("#game-won").delay(1000).fadeOut(1000).css("display", "none");              
+                setTimeout(() => {
+                    gameStartAudio.play();
+                    $("#game-won").fadeOut(500).css("display", "none");
+                }, 100);
+                $('.game-timer').html('Time: '); 
             };
 
 
             setTimeout( () => {
+                $(".card").css("animation", "spinInSpinOut 2400ms ease-in");
                 button.classList.remove("visible");
-            }, 1500);
+            }, 750);
 
             game.startGame();
+
         })
     })
     
