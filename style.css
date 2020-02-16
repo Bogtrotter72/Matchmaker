@@ -23,6 +23,10 @@ a:hover, a:link, a:visited {
     z-index: 1;
 }
 
+.btn {
+    border-radius: 14px;
+}
+
 #btn-playAgain__true {
     display: block;
     margin-top: 100px;
@@ -85,7 +89,7 @@ a:hover, a:link, a:visited {
     grid-gap: 10px;
     justify-content: center;
     left: 50%;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     perspective: 1500px;
     position: absolute;
     top: 20%;
@@ -172,20 +176,15 @@ img {
     width: 240px;
 }
 
-.modal-text {
-    align-items: center;
-    display: none;
-    bottom: 0;
-    justify-content: center;
-    left: 0;
-    right: 0;
-    top: 0;
-    position: fixed;
-    z-index: 1;
+.modal-content {
+    border-radius: 14px;
+    color: rgba(17, 73, 59, .7);
+    text-align: center;
 }
-
-.modal-text.visible {
-    display: flex;
+.modal-title {
+    padding-left: 30%;
+    font-family: 'Permanent Marker', cursive;
+    width: 70%;
 }
 
 #page-title {
@@ -206,8 +205,26 @@ img {
     display: inline;
 }
 
-.rules {
+.rules, .rules:hover, .rules:focus, .rules:active {
     align-self: flex-start;
+    background: transparent;
+    border-color: rgba(17, 73, 59, .7);
+    box-shadow: none;
+
+    color: rgba(17, 73, 59, .7);
+    line-height: 1;
+}
+
+/* Override Bootstrap default styling */
+.btn-primary:not(:disabled):not(.disabled):active {
+    background: transparent;
+    border-color: rgba(17, 73, 59, .7);
+    color: rgba(17, 73, 59, .7);
+    line-height: 1;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    box-shadow: none;
 }
 
 #rules {
@@ -390,11 +407,16 @@ img {
     }
 }
 
+
 @media only screen and (min-width: 1024px) {
 
+    #btn-startGame {
+        font-size: 1.5rem;
+    }
+
     .card {
-        height: 340px;
-        width: 210px;
+        height: 280px;
+        width: 170px;
     }
 
     #main-page__bg-img {
@@ -407,10 +429,31 @@ img {
     #page-title {
         font-size: 4rem;
     }
+
+    #rules {
+        font-size: 1.5rem;
+        left: 10%;
+        width: 30%;
+    }
 }
 
 /* iPhone X landscape settings */
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
+
+    .card {
+        height: 160px;
+        width: 110px;
+    }
+
+    #game-container {
+        top: 22%;
+    }
+
+    .game-info-container {
+        left: 24%;
+        top: 14%;
+        width: 50%;
+    }
 
     #main-page__bg-img {
         height: 250px;
@@ -442,14 +485,30 @@ img {
     }
 }
 
+/* Apple iPad Pro landscape and Laptop-M settings */
+@media only screen and (min-width: 1366px) {
+    #main-page__bg-img {
+        height: 300px;
+        left: 41%;
+        width: 250px;
+    }
+}
+
+@media only screen and (min-width: 1366px) and (orientation: landscape) {
+    .card {
+        height: 200px;
+        width: 140px;
+    }
+}
+
 @media only screen and (min-width: 1440px) {
     #btn-playAgain__true, #btn-playAgain__false {
         font-size: 2rem;
     }
 
     .card {
-        height: 290px;
-        width: 190px;
+        height: 250px;
+        width: 170px;
     }
 
     #game-container {
@@ -464,5 +523,11 @@ img {
         height: 400px;
         left: 41%;
         width: 350px;
+    }
+
+    #rules {
+        font-size: 1.5rem;
+        left: 10%;
+        width: 30%;
     }
 }

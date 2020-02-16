@@ -67,8 +67,14 @@ class PsychoMatch{
             $('.game-timer').html('Time: ' + time);
             this.totalTime = time;
         }, 1000);
-
     }
+    pauseCounter() {
+        clearInterval(this.counter);
+    }
+    restartCounter() {
+        this.counter = this.gameCounter(this.totalTime);
+    }
+
     flipCard(card) {
         if(this.lockBoard) return;
         if(card === this.firstCard) return;
@@ -182,12 +188,7 @@ class PsychoMatch{
     }
 }
 
-$("#btn-playAgain__false").click(() => {
-    console.log("Quit");
-});
-
 function gameInit() {
-
     // Make an array for the game start buttons and the game cards
     let buttons = $.makeArray($(".btn-start") );
     let cards = $.makeArray($('.card'));
@@ -213,6 +214,15 @@ function gameInit() {
 
     // Create a new game instance
     let game = new PsychoMatch(cards);
+
+    // Pause and restart the time on modal open and modal close respectively
+    $(".rules").click( () => {
+        game.pauseCounter();
+    })
+
+    $(".close").click( () => {
+        game.restartCounter();
+    })
     
     // Add click event listeners to the game start buttons and assign differing responses depending on which button was clicked
     buttons.forEach(button => {
@@ -259,7 +269,15 @@ function gameInit() {
 
             game.startGame();
         })
-    })
+    });
+
+    // Add a click event listener to the quit button and fadeIn game icon and title
+    $("#btn-playAgain__false").click(() => {
+        $("#main-page__bg-img").css("animation", "spinIn 1198ms ease-in forwards"); 
+        $("#bg-img__wrapper").fadeIn(1198);
+        $("#game-won").fadeOut(1198).css("display", "none");
+        $("#page-title").fadeIn(1198);
+    });
     
     // Show the game rules and prevent multiple mouse event triggers
     $(".rules").mouseover(function () { 

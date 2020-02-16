@@ -30,19 +30,47 @@
     <div class="main-page">
         <h1 id="page-title">Psychometric Match</h1>
         <div id="hud">
-            <div class="rules">
+            <!-- <div class="rules">
                 Rules
                 <span id="rules">Match pairs of cards in the shortest amount of time and least number of moves.</span>
-            </div>
+            </div> -->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary rules rules-modal" data-toggle="modal" data-target="#rulesModal">
+                Rules
+            </button>
             <i class="fas fa-volume-up" id="soundOn"></i>
             <i class="fas fa-volume-mute" id="soundOff"></i>
             <div class="selectLevel">Select Level</div>
         </div>
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="rulesModal" tabindex="-1" data-keyboard= "false" data-backdrop="static" role="dialog" aria-labelledby="rulesModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Game rules</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                Match pairs of cards in the shortest amount of time and the least number of moves.
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+    
         <div id="bg-img__wrapper">
             <img id="main-page__bg-img" src="thinking.png" alt="">
         </div>
         <div id="btn-wrapper__game-start">
-            <div class="btn btn-success btn-start" id="btn-startGame">Start Game</div>
+            <div class="btn btn-success btn-start" id="btn-startGame"><a href="#hud">Start Game</a></div>
         </div>
         
         <div class="game-info-container">
