@@ -30,17 +30,16 @@
     <div class="main-page">
         <h1 id="page-title">Psychometric Match</h1>
         <div id="hud">
-            <!-- <div class="rules">
-                Rules
-                <span id="rules">Match pairs of cards in the shortest amount of time and least number of moves.</span>
-            </div> -->
-            <!-- Button trigger modal -->
+            
+            <!-- Button trigger rules modal -->
             <button type="button" class="btn btn-primary rules rules-modal" data-toggle="modal" data-target="#rulesModal">
                 Rules
             </button>
             <i class="fas fa-volume-up" id="soundOn"></i>
             <i class="fas fa-volume-mute" id="soundOff"></i>
-            <div class="selectLevel">Select Level</div>
+            <button type="button" class="btn btn-primary selectLevel selectLevel-modal" data-toggle="modal" data-target="#selectLevelModal">
+                Select Level
+            </button>
         </div>
 
 
@@ -52,12 +51,33 @@
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Game rules</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close rulesClose" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 Match pairs of cards in the shortest amount of time and the least number of moves.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="selectLevelModal" tabindex="-1" data-keyboard= "false" data-backdrop="static" role="dialog" aria-labelledby="selectLevelModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Select Level</h5>
+                <button type="button" class="selectLevelClose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="btn-wrapper__level-select">
+                        <div class="btn btn-success btn__level-select btn-beginner btn-start close" data-dismiss="modal" aria-label="Close">Beginner</div>
+                        <div class="btn btn-warning btn__level-select btn-intermediate btn-start close" data-dismiss="modal" aria-label="Close">Intermediate</div>
+                        <div class="btn btn-danger btn__level-select btn-advanced btn-start close" data-dismiss="modal" aria-label="Close">Advanced</div>
+                    </div>
                 </div>
             </div>
             </div>
@@ -84,7 +104,7 @@
         <div id="game-container">
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_001_bhay28.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -92,7 +112,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008484/Milestone%202/Final%20Images/Beginner_001__match_eyrmdw.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -100,7 +120,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_002_xlg3f7.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -108,7 +128,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_002__match_f57myd.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -116,7 +136,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_003_o1jrd7.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -124,7 +144,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008480/Milestone%202/Final%20Images/Beginner_003__match_lzysh0.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -132,7 +152,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_004_rmtvyq.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -140,7 +160,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_004__match_lp5lya.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -148,7 +168,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_005_jkkwpo.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -156,7 +176,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008483/Milestone%202/Final%20Images/Beginner_005__match_ozvn4w.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -164,7 +184,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008481/Milestone%202/Final%20Images/Beginner_006_wimc5m.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">
@@ -172,7 +192,7 @@
             </div>
             <div class="card">
                 <div class="card__front">
-                    <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1581008482/Milestone%202/Final%20Images/Beginner_006__match_vrisnb.png" alt="" class="card__front-img">
+                    <img src="" alt="" class="card__front-img">
                 </div>
                 <div class="card__back">
                     <img src="https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png" alt="" class="card__back-img">

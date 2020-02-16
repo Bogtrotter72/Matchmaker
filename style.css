@@ -33,6 +33,13 @@ a:hover, a:link, a:visited {
     margin-bottom: 20px;
 }
 
+.btn__level-select {
+    display: block;
+    float: none;
+    margin-bottom: 10px;
+    text-shadow: none;
+}
+
 #btn-wrapper__game-start {
     left: 50%;
     position: fixed;
@@ -205,7 +212,10 @@ img {
     display: inline;
 }
 
-.rules, .rules:hover, .rules:focus, .rules:active {
+.rules, .selectLevel,
+.rules:hover, .selectLevel:hover,
+.rules:focus, .selectLevel:focus,
+.rules:active, .selectLevel:active {
     align-self: flex-start;
     background: transparent;
     border-color: rgba(17, 73, 59, .7);

@@ -35,7 +35,7 @@ class AudioController {
 class PsychoMatch{
     constructor(cards) {
         this.cardsArray = cards;
-        this.beginnerImgs = ['_001', '_002', '_003', '_004', '_005', '_006'];
+        this.imgIndex = ['_001', '_002', '_003', '_004', '_005', '_006'];
         this.audioController = new AudioController();
     }
     startGame() {
@@ -97,9 +97,9 @@ class PsychoMatch{
             this.firstCard = card;
             this.firstCardSrc = this.firstCard.firstElementChild.firstElementChild.src;
 
-            for(let i = 0; i < this.beginnerImgs.length; i++)  {
-                if(this.firstCardSrc.includes("Beginner" + this.beginnerImgs[i])) {
-                    this.firstCardSrc = this.beginnerImgs[i];
+            for(let i = 0; i < this.imgIndex.length; i++)  {
+                if(this.firstCardSrc.includes("Beginner" + this.imgIndex[i])  || this.firstCardSrc.includes("Intermediate" + this.imgIndex[i])  || this.firstCardSrc.includes("Advanced" + this.imgIndex[i]) ) {
+                    this.firstCardSrc = this.imgIndex[i];
                 }
             }
 
@@ -108,9 +108,9 @@ class PsychoMatch{
             this.secondCard = card;
             this.secondCardSrc = this.secondCard.firstElementChild.firstElementChild.src;
 
-            for(let i = 0; i < this.beginnerImgs.length; i++)  {
-                if(this.secondCardSrc.includes("Beginner" + this.beginnerImgs[i])) {
-                    this.secondCardSrc = this.beginnerImgs[i];
+            for(let i = 0; i < this.imgIndex.length; i++)  {
+                if (this.secondCardSrc.includes("Beginner" + this.imgIndex[i]) || this.secondCardSrc.includes("Intermediate" + this.imgIndex[i])  || this.secondCardSrc.includes("Advanced" + this.imgIndex[i]) ) {
+                    this.secondCardSrc = this.imgIndex[i];
                 }
             }
 
@@ -192,9 +192,78 @@ function gameInit() {
     // Make an array for the game start buttons and the game cards
     let buttons = $.makeArray($(".btn-start") );
     let cards = $.makeArray($('.card'));
+    let imageURL = 'https://res.cloudinary.com/bogtrotter72/image/upload/';
+    let levelButtons = $.makeArray($(".btn__level-select"));
+
+    const begImageArray = [
+        `${imageURL}v1581008483/Milestone%202/Final%20Images/Beginner_001_bhay28.png`,
+        `${imageURL}v1581008484/Milestone%202/Final%20Images/Beginner_001__match_eyrmdw.png`,
+        `${imageURL}v1581008482/Milestone%202/Final%20Images/Beginner_002_xlg3f7.png`,
+        `${imageURL}v1581008481/Milestone%202/Final%20Images/Beginner_002__match_f57myd.png`,
+        `${imageURL}v1581008482/Milestone%202/Final%20Images/Beginner_003_o1jrd7.png`,
+        `${imageURL}v1581008480/Milestone%202/Final%20Images/Beginner_003__match_lzysh0.png`,
+        `${imageURL}v1581008482/Milestone%202/Final%20Images/Beginner_004_rmtvyq.png`,
+        `${imageURL}v1581008481/Milestone%202/Final%20Images/Beginner_004__match_lp5lya.png`,
+        `${imageURL}v1581008483/Milestone%202/Final%20Images/Beginner_005_jkkwpo.png`,
+        `${imageURL}v1581008483/Milestone%202/Final%20Images/Beginner_005__match_ozvn4w.png`,
+        `${imageURL}v1581008481/Milestone%202/Final%20Images/Beginner_006_wimc5m.png`,
+        `${imageURL}v1581008482/Milestone%202/Final%20Images/Beginner_006__match_vrisnb.png`
+    ];
+
+    const interImageArray = [
+        `${imageURL}v1581874097/Milestone%202/Final%20Images/Intermediate_001_p2dysk.png`,
+        `${imageURL}v1581874100/Milestone%202/Final%20Images/Intermediate_001__match_sdgpws.png`, 
+        `${imageURL}v1581874098/Milestone%202/Final%20Images/Intermediate_002_ta4gwe.png`,
+        `${imageURL}v1581874096/Milestone%202/Final%20Images/Intermediate_002__match_lhoewj.png`,
+        `${imageURL}v1581874098/Milestone%202/Final%20Images/Intermediate_003_fz7yec.png`,
+        `${imageURL}v1581874098/Milestone%202/Final%20Images/Intermediate_003__match_xhltuf.png`,
+        `${imageURL}v1581874100/Milestone%202/Final%20Images/Intermediate_004_pbz3rh.png`,
+        `${imageURL}v1581874100/Milestone%202/Final%20Images/Intermediate_004__match_i6mmeq.png`,
+        `${imageURL}v1581874100/Milestone%202/Final%20Images/Intermediate_005_ymnxgw.png`,
+        `${imageURL}v1581874103/Milestone%202/Final%20Images/Intermediate_005__match_nva7ai.png`,
+        `${imageURL}v1581874100/Milestone%202/Final%20Images/Intermediate_006_sah2vy.png`,
+        `${imageURL}v1581874100/Milestone%202/Final%20Images/Intermediate_006__match_fsr97j.png`
+    ];
+
+    const advImageArray = [
+        `${imageURL}v1581874951/Milestone%202/Final%20Images/Advanced_001_e0olgy.png`,
+        `${imageURL}v1581874951/Milestone%202/Final%20Images/Advanced_001__match_rrkvk8.png`,
+        `${imageURL}v1581874950/Milestone%202/Final%20Images/Advanced_002_gfz5rb.png`,
+        `${imageURL}v1581874950/Milestone%202/Final%20Images/Advanced_002__match_euggao.png`,
+        `${imageURL}v1581874950/Milestone%202/Final%20Images/Advanced_003_al4vxk.png`,
+        `${imageURL}v1581874951/Milestone%202/Final%20Images/Advanced_003__match_rc6unj.png`,
+        `${imageURL}v1581874951/Milestone%202/Final%20Images/Advanced_004_f75oqo.png`,
+        `${imageURL}v1581874952/Milestone%202/Final%20Images/Advanced_004__match_z5gakz.png`,
+        `${imageURL}v1581874952/Milestone%202/Final%20Images/Advanced_005_gwjgnu.png`,
+        `${imageURL}v1581874952/Milestone%202/Final%20Images/Advanced_005__match_ml0wsn.png`,
+        `${imageURL}v1581874952/Milestone%202/Final%20Images/Advanced_006_h1szgq.png`,
+        `${imageURL}v1581874953/Milestone%202/Final%20Images/Advanced_006__match_rv0vij.png`
+    ];
+
+    let imageArray = begImageArray;
+
+
+    levelButtons.forEach(levelButton => {
+        $(levelButton).click( function ()  {
+            if ($(levelButton).hasClass("btn-beginner")) {
+                imageArray = begImageArray;
+            } else if ($(levelButton).hasClass("btn-intermediate")) {
+                imageArray = interImageArray;
+            } else if ($(levelButton).hasClass("btn-advanced")) {
+                imageArray = advImageArray;
+            };
+            $('.game-timer').html('Time: ');
+            $('.game-click').html('Moves: ');
+            setTimeout( () => {
+                $(".selectLevel-modal").attr("disabled", true);
+                $(".selectLevel-modal").attr("disabled", false);
+            }, 1000);
+        });
+    });
 
     // Initialize the game end scenario
     cardsRemaining = cards.length;
+
 
     // Intial sound conditions (Game start audio & mute / unmute functions)
     let gameStartAudio = new Audio("game-start.mp3");
@@ -215,15 +284,25 @@ function gameInit() {
     // Create a new game instance
     let game = new PsychoMatch(cards);
 
+
     // Pause and restart the time on modal open and modal close respectively
     $(".rules").click( () => {
         game.pauseCounter();
     })
 
-    $(".close").click( () => {
+    $(".selectLevel").click( () => {
+        game.pauseCounter();
+    })
+
+    $(".rulesClose").click( () => {
+        game.restartCounter();
+    })
+
+    $(".selectLevelClose").click( () => {
         game.restartCounter();
     })
     
+
     // Add click event listeners to the game start buttons and assign differing responses depending on which button was clicked
     buttons.forEach(button => {
         $(button).click( () => {
@@ -261,6 +340,14 @@ function gameInit() {
                 $('.game-click').html('Moves: ');
             };
 
+
+            // Place the images on the card front faces
+            for (i = 0; i < imageArray.length; i++) {
+                cardImage = imageArray[i];
+                $('.card__front-img').eq(i).attr('src', cardImage);
+            }
+
+
             // Play the card animation to signify game start
             setTimeout( () => {
                 $(".card").css("animation", "spinInSpinOut 1800ms ease-in");
@@ -271,6 +358,7 @@ function gameInit() {
         })
     });
 
+
     // Add a click event listener to the quit button and fadeIn game icon and title
     $("#btn-playAgain__false").click(() => {
         $("#main-page__bg-img").css("animation", "spinIn 1198ms ease-in forwards"); 
@@ -279,6 +367,7 @@ function gameInit() {
         $("#page-title").fadeIn(1198);
     });
     
+
     // Show the game rules and prevent multiple mouse event triggers
     $(".rules").mouseover(function () { 
         $("#rules").stop().fadeIn(250);
@@ -288,6 +377,8 @@ function gameInit() {
         // $("#rules").stop().fadeIn(250);
         $("#rules").stop().fadeOut(500);
     });
+
+   
 
     // Add click event listeners to the card
     cards.forEach(card => {
