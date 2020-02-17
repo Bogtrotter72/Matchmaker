@@ -39,6 +39,7 @@ class PsychoMatch{
         this.audioController = new AudioController();
     }
     startGame() {
+
         this.bonus = 0;
         this.cardClicks = 0;
         this.cardFlipped = false;
@@ -169,7 +170,8 @@ class PsychoMatch{
         // Calculate the score
         this.score = Math.floor((this.cardsArray.length / this.cardClicks) * this.cardsArray.length * 100);
 
-        $("#game-won").fadeIn(1198).css("display", "block");
+        $("#game-won__outer-container").fadeIn(1198).css("display", "block");
+        $("#game-won__inner-container").fadeIn(1198).css("display", "block");
         $('.game-won__score').html('Score: ' + this.score);
 
     }
@@ -187,6 +189,8 @@ class PsychoMatch{
         this.audioController.muteSound();
     }
 }
+
+
 
 function gameInit() {
     // Make an array for the game start buttons and the game cards
@@ -240,9 +244,11 @@ function gameInit() {
         `${imageURL}v1581874953/Milestone%202/Final%20Images/Advanced_006__match_rv0vij.png`
     ];
 
+    // Set initial card images
     let imageArray = begImageArray;
 
 
+    // Reset the board when the level is changed
     levelButtons.forEach(levelButton => {
         $(levelButton).click( function ()  {
             if ($(levelButton).hasClass("btn-beginner")) {
@@ -254,10 +260,6 @@ function gameInit() {
             };
             $('.game-timer').html('Time: ');
             $('.game-click').html('Moves: ');
-            setTimeout( () => {
-                $(".selectLevel-modal").attr("disabled", true);
-                $(".selectLevel-modal").attr("disabled", false);
-            }, 1000);
         });
     });
 
@@ -288,18 +290,31 @@ function gameInit() {
     // Pause and restart the time on modal open and modal close respectively
     $(".rules").click( () => {
         game.pauseCounter();
+        setTimeout( () => {
+            $(".rules").prop("disabled", true);
+        }, 500);
+
     })
 
     $(".selectLevel").click( () => {
         game.pauseCounter();
+        setTimeout( () => {
+            $(".selectLevel").prop("disabled", true);
+        }, 500);
     })
 
     $(".rulesClose").click( () => {
         game.restartCounter();
+        setTimeout( () => {
+            $(".rules").prop("disabled", false);
+        }, 1200);
     })
 
     $(".selectLevelClose").click( () => {
         game.restartCounter();
+        setTimeout( () => {
+            $(".selectLevel").prop("disabled", false);
+        }, 1200);
     })
     
 
@@ -334,12 +349,25 @@ function gameInit() {
                     if($(".fa-volume-mute").attr("style")!=="display: inline;") {
                         gameStartAudio.play();
                     }
-                    $("#game-won").fadeOut(500).css("display", "none");
+                    setTimeout( () => {
+                        $("#game-won__outer-container").fadeOut("slow").css("display", "none");
+                    }, 1500)
+                    $("#game-won__inner-container").fadeOut(500).css("display", "none");
                 }, 100);
                 $('.game-timer').html('Time: ');
                 $('.game-click').html('Moves: ');
             };
 
+
+            if (($(buttonType)).prop("id") == "beginner" || ($(buttonType)).prop("id") == "intermediate" || ($(buttonType)).prop("id") == "advanced" ) {
+                setTimeout(() => {
+                    console.log("Works");
+                    // Check if sound is muted
+                    if($(".fa-volume-mute").attr("style")!=="display: inline;") {
+                        gameStartAudio.play();
+                    }
+                }, 100);
+            };
 
             // Place the images on the card front faces
             for (i = 0; i < imageArray.length; i++) {
@@ -354,17 +382,34 @@ function gameInit() {
                 button.classList.remove("visible");
             }, 750);
 
+
+            (function disableButtons() {
+                setTimeout( () => {
+                    $(".rules").prop("disabled", true);
+                    $(".selectLevel").prop("disabled", true);
+                }, 500);
+        
+                setTimeout( () => {
+                    $(".rules").prop("disabled", false);
+                    $(".selectLevel").prop("disabled", false);
+                }, 2750)
+            })();
+
             game.startGame();
         })
     });
 
 
-    // Add a click event listener to the quit button and fadeIn game icon and title
+    // Add a click event listener to the quit button
+    // Fade-in game icon and title, and disable background buttons
     $("#btn-playAgain__false").click(() => {
         $("#main-page__bg-img").css("animation", "spinIn 1198ms ease-in forwards"); 
         $("#bg-img__wrapper").fadeIn(1198);
-        $("#game-won").fadeOut(1198).css("display", "none");
+        $("#game-won__outer-container").fadeOut(1198).css("display", "none");
+        $("#game-won__inner-container").fadeOut(1198).css("display", "none");
         $("#page-title").fadeIn(1198);
+        $(".rules").prop("disabled", true);
+        $(".selectLevel").prop("disabled", true);
     });
     
 

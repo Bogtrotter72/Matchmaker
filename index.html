@@ -42,9 +42,6 @@
             </button>
         </div>
 
-
-
-
         <!-- Modal -->
         <div class="modal fade" id="rulesModal" tabindex="-1" data-keyboard= "false" data-backdrop="static" role="dialog" aria-labelledby="rulesModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -56,7 +53,9 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                Match pairs of cards in the shortest amount of time and the least number of moves.
+                <p>Match pairs of cards in the shortest amount of time and the least number of moves.</p>
+                <p>Images may be mirrored left to right, or mirrored left to right and inverted.</p>
+                Open either this rules window or the level select window to pause the game; close the window to resume.
                 </div>
             </div>
             </div>
@@ -68,23 +67,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Select Level</h5>
-                <button type="button" class="selectLevelClose" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close selectLevelClose" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                     <div class="btn-wrapper__level-select">
-                        <div class="btn btn-success btn__level-select btn-beginner btn-start close" data-dismiss="modal" aria-label="Close">Beginner</div>
-                        <div class="btn btn-warning btn__level-select btn-intermediate btn-start close" data-dismiss="modal" aria-label="Close">Intermediate</div>
-                        <div class="btn btn-danger btn__level-select btn-advanced btn-start close" data-dismiss="modal" aria-label="Close">Advanced</div>
+                        <div class="btn btn-success btn__level-select btn-beginner btn-start close" data-dismiss="modal" aria-label="Close" id="beginner">Beginner</div>
+                        <div class="btn btn-warning btn__level-select btn-intermediate btn-start close" data-dismiss="modal" aria-label="Close" id="intermediate">Intermediate</div>
+                        <div class="btn btn-danger btn__level-select btn-advanced btn-start close" data-dismiss="modal" aria-label="Close" id="advanced">Advanced</div>
                     </div>
                 </div>
             </div>
             </div>
         </div>
-
-
-
     
         <div id="bg-img__wrapper">
             <img id="main-page__bg-img" src="thinking.png" alt="">
@@ -201,18 +197,18 @@
         </div>
 
 
-        <!-- Create the game won board -->
-        <div id="game-won">
-            <div class="game-won__info">You Win!</div>
-            <div class="game-won__score">Score: </div>
-            <div class="btn-wrapper__game-won">
-                <div class="btn btn-success btn-start" id="btn-playAgain__true"><a href="#hud">Play Again</a></div>
-                <div class="btn btn-primary" id="btn-playAgain__false">Quit</div>
+        <!-- Create the game won screen -->
+        <div id="game-won__outer-container">
+            <div id="game-won__inner-container">
+                <div class="game-won__info">You Win!</div>
+                <div class="game-won__score">Score: </div>
+                <div class="btn-wrapper__game-won">
+                    <div class="btn btn-success btn-start" id="btn-playAgain__true"><a href="#hud">Play Again</a></div>
+                    <div class="btn btn-primary" id="btn-playAgain__false">Quit</div>
+                </div>
             </div>
         </div>
     </div>
-
-    
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 

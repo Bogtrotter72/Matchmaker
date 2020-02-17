@@ -122,7 +122,7 @@ a:hover, a:link, a:visited {
 }
 
 
-#game-won {
+#game-won__inner-container {
     align-items: center;
     color: white;
     display: none;
@@ -135,8 +135,17 @@ a:hover, a:link, a:visited {
     text-align: center;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
 }
+
+#game-won__outer-container {
+    display: none;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 20;
+}
+
 
 #hud {
     color: rgba(17, 73, 59, .7);
@@ -215,7 +224,8 @@ img {
 .rules, .selectLevel,
 .rules:hover, .selectLevel:hover,
 .rules:focus, .selectLevel:focus,
-.rules:active, .selectLevel:active {
+.rules:active, .selectLevel:active,
+.rules:disabled, .selectLevel:disabled {
     align-self: flex-start;
     background: transparent;
     border-color: rgba(17, 73, 59, .7);
@@ -332,7 +342,7 @@ img {
         width: 65%;
     }
 
-    #game-won {
+    #game-won__inner-container {
         font-size: 1.7rem;
     }
 }
@@ -345,11 +355,19 @@ img {
 }
 
 @media only screen and (min-width: 360px) and (orientation: landscape) {
+
     #main-page__bg-img {
         height: 150px;
         left: 40%;
         top: 25%;
         width: 130px;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+    #game-container {
+        grid-template-columns: repeat(6, auto);
+        top: 25%;
     }
 }
 
@@ -525,7 +543,7 @@ img {
         top: 15%;
     }
 
-    #game-won {
+    #game-won__inner-container {
         font-size: 3rem;
     }
 
