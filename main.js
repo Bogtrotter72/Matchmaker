@@ -34,17 +34,17 @@ class AudioController {
 
 class PsychoMatch{
     constructor(cards) {
+        this.audioController = new AudioController();
         this.cardsArray = cards;
         this.imgIndex = ['_001', '_002', '_003', '_004', '_005', '_006'];
-        this.audioController = new AudioController();
     }
     startGame() {
 
-        this.bonus = 0;
         this.cardClicks = 0;
         this.cardFlipped = false;
         this.cardsRemaining = this.cardsArray.length;
         this.firstCard = null;
+        this.levelSelected = $(".btn-beginner") ;
         this.lockBoard = false;
         this.matchedCards = [];
         this.score = 0;
@@ -75,7 +75,6 @@ class PsychoMatch{
     restartCounter() {
         this.counter = this.gameCounter(this.totalTime);
     }
-
     flipCard(card) {
         if(this.lockBoard) return;
         if(card === this.firstCard) return;
@@ -165,10 +164,23 @@ class PsychoMatch{
         $.each($('.card'), function () {
             $(this).removeClass('flipped');
             $(this).delay(350).css('animation', 'spinInSpinOut 2396ms ease-in');
-        });
+        }); 
 
-        // Calculate the score
-        this.score = Math.floor((this.cardsArray.length / this.cardClicks) * this.cardsArray.length * 100);
+        // Ascertain the current level selected (if not yet defined, set default value)
+        if (!window.levelSelected) {
+            this.levelSelected = this.levelSelected;
+            this.bonusMultiplier = 1;
+        } else {
+            this.levelSelected = levelSelected;
+            // Calculate the bonus multiplier gauged on the level selected
+            if(this.levelSelected.hasClass(".btn-intermediate")) {
+                this.bonusMultiplier = 2;
+            } else {
+                this.bonusMultiplier = 3;
+            };
+        };
+
+        this.score = Math.round(((this.cardsArray.length / this.cardClicks) * this.cardsArray.length)/this.totalTime * this.bonusMultiplier * 1000);
 
         $("#game-won__outer-container").fadeIn(1198).css("display", "block");
         $("#game-won__inner-container").fadeIn(1198).css("display", "block");
@@ -260,8 +272,11 @@ function gameInit() {
             };
             $('.game-timer').html('Time: ');
             $('.game-click').html('Moves: ');
+            levelSelected = $(this);
+            return levelSelected;
         });
     });
+    
 
     // Initialize the game end scenario
     cardsRemaining = cards.length;
@@ -361,7 +376,6 @@ function gameInit() {
 
             if (($(buttonType)).prop("id") == "beginner" || ($(buttonType)).prop("id") == "intermediate" || ($(buttonType)).prop("id") == "advanced" ) {
                 setTimeout(() => {
-                    console.log("Works");
                     // Check if sound is muted
                     if($(".fa-volume-mute").attr("style")!=="display: inline;") {
                         gameStartAudio.play();
@@ -432,7 +446,6 @@ function gameInit() {
         })
     });
     return cards;
-
 };
 
 document.addEventListener("DOMContentLoaded", gameInit());
