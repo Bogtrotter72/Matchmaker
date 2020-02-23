@@ -1,9 +1,9 @@
 class AudioController {
     constructor() {
-        this.successAudio = new Audio('Success.mp3');
-        this.failAudio = new Audio('Failure.mp3');
-        this.winAudio = new Audio('Game-win.mp3');
-        this.flipAudio = new Audio('card-flip.mp3');
+        this.successAudio = new Audio('https://res.cloudinary.com/bogtrotter72/video/upload/v1582024862/Milestone%202/Audio%20Files/Success_arpin7.mp3');
+        this.failAudio = new Audio('https://res.cloudinary.com/bogtrotter72/video/upload/v1582024862/Milestone%202/Audio%20Files/Failure_nfxflq.mp3');
+        this.winAudio = new Audio('https://res.cloudinary.com/bogtrotter72/video/upload/v1582024863/Milestone%202/Audio%20Files/Game-win_f59xy7.mp3');
+        this.flipAudio = new Audio('https://res.cloudinary.com/bogtrotter72/video/upload/v1582024862/Milestone%202/Audio%20Files/card-flip_vdxstz.mp3');
         this.playSound();
     }
     cardFlip() {
@@ -258,6 +258,7 @@ function gameInit() {
 
     // Set initial card images
     let imageArray = begImageArray;
+    $('.card__back-img').attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png');
 
 
     // Reset the board when the level is changed
@@ -283,7 +284,7 @@ function gameInit() {
 
 
     // Intial sound conditions (Game start audio & mute / unmute functions)
-    let gameStartAudio = new Audio("game-start.mp3");
+    let gameStartAudio = new Audio("https://res.cloudinary.com/bogtrotter72/video/upload/v1582024863/Milestone%202/Audio%20Files/game-start_jdargo.mp3");
 
     $("#soundOn").click(function() {
         $("#soundOn").fadeOut(600);
@@ -387,6 +388,7 @@ function gameInit() {
             for (i = 0; i < imageArray.length; i++) {
                 cardImage = imageArray[i];
                 $('.card__front-img').eq(i).attr('src', cardImage);
+                $('.card__back-img').eq(i).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png');
             }
 
 

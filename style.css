@@ -1,5 +1,8 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -12,25 +15,28 @@ a:hover, a:link, a:visited {
 }
 
 #bg-img__wrapper {
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: rgba(17, 73, 59, .7);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    height: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     overflow: hidden;
     position: fixed;
-    height: 100%;
     width: 100%;
     z-index: 1;
 }
 
 .btn {
     border-radius: 14px;
-}
-
-#btn-playAgain__true {
-    display: block;
-    margin-top: 100px;
-    margin-bottom: 20px;
 }
 
 .btn__level-select {
@@ -40,11 +46,32 @@ a:hover, a:link, a:visited {
     text-shadow: none;
 }
 
+#btn-playAgain__true {
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+
+/* Override Bootstrap default styling */
+.btn-primary:not(:disabled):not(.disabled):active {
+    background: transparent;
+    border-color: rgba(17, 73, 59, .7);
+    color: rgba(17, 73, 59, .7);
+    line-height: 1;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
 #btn-wrapper__game-start {
     left: 50%;
     position: fixed;
     top: 80%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     z-index: 3;
 }
 
@@ -54,57 +81,104 @@ a:hover, a:link, a:visited {
     height: 150px;
     overflow: hidden;
     position: relative;
-    transform: scale(1);
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    -o-transition: transform 0.3s;
     transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
     width: 90px;
 }
 
 .card__front, .card__back {
-    align-items: center;
-    backface-visibility: hidden;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     height: 100%;
-    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     position: absolute;
+    -webkit-transition: -webkit-transform 750ms ease;
+    transition: -webkit-transform 750ms ease;
+    -o-transition: transform 750ms ease;
     transition: transform 750ms ease;
+    transition: transform 750ms ease, -webkit-transform 750ms ease;
     width: 100%;
 }
 
 .card__front {
-    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
 }
 
 
 /* Display the card front */
 .card.flipped .card__back{
-    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
 }
 
 .card.flipped .card__front{
-    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
 }
 
 .fas{
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
 }
 
+.game-click {
+    margin-left: auto;
+}
+
 #game-container {
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: auto 10px auto 10px auto;
     grid-template-columns: repeat(3, auto);
     grid-gap: 10px;
-    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     left: 50%;
     padding-bottom: 10px;
-    perspective: 1500px;
+    -webkit-perspective: 1500px;
+            perspective: 1500px;
     position: absolute;
     top: 20%;
-    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%);
 }
 
 .game-info {
     color: rgba(17, 73, 59, .7);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     font-family: 'Permanent Marker', cursive;
     font-size: 0.8rem;
@@ -117,24 +191,27 @@ a:hover, a:link, a:visited {
     width: 75%;
 }
 
-.game-click {
-    margin-left: auto;
-}
-
-
 #game-won__inner-container {
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     color: white;
     display: none;
     font-family: 'Permanent Marker', cursive;
     font-size: 2rem;
     font-weight: normal;
-    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     left: 50%;
     position: fixed;
     text-align: center;
     top: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 }
 
 #game-won__outer-container {
@@ -146,19 +223,23 @@ a:hover, a:link, a:visited {
     z-index: 20;
 }
 
-
 #hud {
     color: rgba(17, 73, 59, .7);
     display: none;
     font-family: 'Permanent Marker', cursive;
     font-size: 1rem;
     font-weight: normal;
-    justify-content: space-evenly;
+    -webkit-box-pack: space-evenly;
+    -webkit-justify-content: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     left: 50%;
     padding-top: 20px;
     position: absolute;
     text-align: center;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     width: 100%;
     z-index: 10;
 }
@@ -175,7 +256,7 @@ img {
 }
 
 #main-page__background {
-    background-image: url("https://res.cloudinary.com/bogtrotter72/image/upload/v1581001491/Milestone%202/Placeholder%20Images/Page_Background_z9vuto-Sharpened_vagovc.png");
+    background-image: url("https://res.cloudinary.com/bogtrotter72/image/upload/e_colorize:50,o_78,z_1/v1582458910/Milestone%202/Final%20Images/background_v2_dclpoy.png");
     background-size: cover;
     height: 100vh;
     position: fixed;
@@ -183,8 +264,12 @@ img {
 }
 
 #main-page__bg-img {
-    align-items: center;
-    animation: spinIn 1198ms ease-in forwards;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-animation: spinIn 1198ms ease-in forwards;
+            animation: spinIn 1198ms ease-in forwards;
     height: 300px;
     left: 12%;
     position: absolute;
@@ -212,7 +297,9 @@ img {
     position: fixed;
     left: 50%;
     text-align: center;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
     width: 100%;
     z-index: 100;
 }
@@ -226,25 +313,16 @@ img {
 .rules:focus, .selectLevel:focus,
 .rules:active, .selectLevel:active,
 .rules:disabled, .selectLevel:disabled {
-    align-self: flex-start;
+    -webkit-align-self: flex-start;
+        -ms-flex-item-align: start;
+            align-self: flex-start;
     background: transparent;
     border-color: rgba(17, 73, 59, .7);
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 
     color: rgba(17, 73, 59, .7);
     line-height: 1;
-}
-
-/* Override Bootstrap default styling */
-.btn-primary:not(:disabled):not(.disabled):active {
-    background: transparent;
-    border-color: rgba(17, 73, 59, .7);
-    color: rgba(17, 73, 59, .7);
-    line-height: 1;
-}
-
-.btn-primary:not(:disabled):not(.disabled):active:focus {
-    box-shadow: none;
 }
 
 #rules {
@@ -269,35 +347,94 @@ img {
 
 /* ANIMATIONS */
 
-@keyframes spinIn {
+@-webkit-keyframes spinIn {
     from {
-        transform:  rotateY(-1080deg) scale(0.1) ;
+        -webkit-transform:  rotateY(-1080deg) scale(0.1) ;
+                transform:  rotateY(-1080deg) scale(0.1) ;
     }
     to {
-        transform:  rotateY(0deg) scale(1) ;
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
 
+    }
+}
+
+@keyframes spinIn {
+    from {
+        -webkit-transform:  rotateY(-1080deg) scale(0.1) ;
+                transform:  rotateY(-1080deg) scale(0.1) ;
+    }
+    to {
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
+
+    }
+}
+
+@-webkit-keyframes spinOut {
+    from {
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
+    }
+    to {
+        -webkit-transform:  rotateY(-1080deg) scale(0.1) ;
+                transform:  rotateY(-1080deg) scale(0.1) ;
     }
 }
 
 @keyframes spinOut {
     from {
-        transform:  rotateY(0deg) scale(1) ;
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
     }
     to {
-        transform:  rotateY(-1080deg) scale(0.1) ;
+        -webkit-transform:  rotateY(-1080deg) scale(0.1) ;
+                transform:  rotateY(-1080deg) scale(0.1) ;
     }
 }
 
+@-webkit-keyframes spinInSpinOut {
+    0% {
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
+    }
+    50% {
+        -webkit-transform:  rotateY(-1080deg) scale(0.1) ;
+                transform:  rotateY(-1080deg) scale(0.1) ;
+    }
+    100% {
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
+    }
+}
 
 @keyframes spinInSpinOut {
     0% {
-        transform:  rotateY(0deg) scale(1) ;
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
     }
     50% {
-        transform:  rotateY(-1080deg) scale(0.1) ;
+        -webkit-transform:  rotateY(-1080deg) scale(0.1) ;
+                transform:  rotateY(-1080deg) scale(0.1) ;
     }
     100% {
-        transform:  rotateY(0deg) scale(1) ;
+        -webkit-transform:  rotateY(0deg) scale(1) ;
+                transform:  rotateY(0deg) scale(1) ;
+    }
+}
+
+@-webkit-keyframes noMatch {
+    0% {
+        left: 50%;
+    }
+    33% {
+        left:  49.5%;
+    }
+    66% {
+        left: 50.5%;
+    }
+    100% {
+        left: 50%;
     }
 }
 
@@ -316,22 +453,42 @@ img {
     }
 }
 
-@keyframes match {
+@-webkit-keyframes match {
     0% {
-        transform:  scale(1);
+        -webkit-transform:  scale(1);
+                transform:  scale(1);
     }
     50% {
-       transform: scale(0.8);
+       -webkit-transform: scale(0.8);
+               transform: scale(0.8);
     }
     100% {
-       transform: scale(1);
+       -webkit-transform: scale(1);
+               transform: scale(1);
     }
 }
+
+@keyframes match {
+    0% {
+        -webkit-transform:  scale(1);
+                transform:  scale(1);
+    }
+    50% {
+       -webkit-transform: scale(0.8);
+               transform: scale(0.8);
+    }
+    100% {
+       -webkit-transform: scale(1);
+               transform: scale(1);
+    }
+}
+
 
 
 /* MEDIA QUERIES */
 @media only screen and (orientation: landscape) {
     #game-container {
+        -ms-grid-columns: auto 10px auto 10px auto 10px auto;
         grid-template-columns: repeat(4, auto);
         top: 25%;
     }
@@ -355,7 +512,6 @@ img {
 }
 
 @media only screen and (min-width: 360px) and (orientation: landscape) {
-
     #main-page__bg-img {
         height: 150px;
         left: 40%;
@@ -364,15 +520,16 @@ img {
     }
 }
 
+/* Media queries for tablet in portrait orientation */
 @media only screen and (min-width: 640px) {
     #game-container {
+        -ms-grid-columns: auto 10px auto 10px auto 10px auto 10px auto 10px auto;
         grid-template-columns: repeat(6, auto);
         top: 25%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-
     #btn-wrapper__game-start {
         top: 65%;
     }
@@ -381,12 +538,19 @@ img {
         height: 225px;
         overflow: hidden;
         position: relative;
-        transform: scale(1);
+        -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+                transform: scale(1);
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: -webkit-transform 0.3s;
+        -o-transition: transform 0.3s;
         transition: transform 0.3s;
+        transition: transform 0.3s, -webkit-transform 0.3s;
         width: 150px;
     }
 
     #game-container {
+        -ms-grid-columns: auto 10px auto 10px auto 10px auto;
         grid-template-columns: repeat(4, auto);
         top: 10%;
     }
@@ -407,13 +571,13 @@ img {
         height: 395px;
         left: 30%;
         position: absolute;
-        top: 27%;
+        top: 25%;
         width: 315px;
     }
 }
 
+/* Media queries for tablets in landscape orientation */
 @media only screen and (min-width: 768px) and (orientation: landscape) {
-
     .card {
         height: 200px;
         width: 130px;
@@ -435,9 +599,8 @@ img {
     }
 }
 
-
+/* Media queries for large tablets and small desktops */
 @media only screen and (min-width: 1024px) {
-
     #btn-startGame {
         font-size: 1.5rem;
     }
@@ -448,10 +611,10 @@ img {
     }
 
     #main-page__bg-img {
-        height: 430px;
+        height: 450px;
         left: 30%;
         top: 25%;
-        width: 380px;
+        width: 400px;
     }
 
     #page-title {
@@ -467,7 +630,6 @@ img {
 
 /* iPhone X landscape settings */
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-
     .card {
         height: 160px;
         width: 110px;
@@ -509,7 +671,9 @@ img {
     }
 
     #main-page__bg-img {
+        height: 270px;
         left: 40%;
+        width: 240px;
     }
 }
 
@@ -535,8 +699,8 @@ img {
     }
 
     .card {
-        height: 250px;
-        width: 170px;
+        height: 230px;
+        width: 150px;
     }
 
     #game-container {
@@ -557,5 +721,13 @@ img {
         font-size: 1.5rem;
         left: 10%;
         width: 30%;
+    }
+}
+
+/* Settings for large desktops */
+@media only screen and (min-width: 1800px) {
+    .card {
+        height: 250px;
+        width: 170px;
     }
 }
