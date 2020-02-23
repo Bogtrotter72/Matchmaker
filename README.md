@@ -113,8 +113,9 @@ The font was chosen to suggest an element of play.  The choice of a simple geome
 
 ### General Testing
 The final *style.css* file was passed through the <a href="https://jigsaw.w3.org/css-validator/">W3C CSS Validation Service</a>.
-All HTML files were passed through the <a href="https://validator.w3.org/">W3C Markup Validation Service</a>.
-The files passed with no errors.
+The HTML file were passed through the <a href="https://validator.w3.org/">W3C Markup Validation Service</a>.
+The *main.js* file was passed through a <a href="https://jshint.com/">linter
+The files passed with no major errors or issues.
 
 ### Manual Testing
 Throughtout the project, the console window was used extensively, in combination with console.log statements in the code, to check feedback from all user interactions.

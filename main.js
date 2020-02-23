@@ -60,7 +60,7 @@ class PsychoMatch{
         this.cardsArray.forEach(card => {
             card.classList.remove("flipped");
             card.style.animation = "none";
-        })
+        });
     }
     gameCounter(time) {
         return setInterval( () => {
@@ -177,8 +177,8 @@ class PsychoMatch{
                 this.bonusMultiplier = 2;
             } else {
                 this.bonusMultiplier = 3;
-            };
-        };
+            }
+        }
 
         this.score = Math.round(((this.cardsArray.length / this.cardClicks) * this.cardsArray.length)/this.totalTime * this.bonusMultiplier * 1000);
 
@@ -210,6 +210,7 @@ function gameInit() {
     let cards = $.makeArray($('.card'));
     let imageURL = 'https://res.cloudinary.com/bogtrotter72/image/upload/';
     let levelButtons = $.makeArray($(".btn__level-select"));
+    let levelSelected;
 
     const begImageArray = [
         `${imageURL}v1581008483/Milestone%202/Final%20Images/Beginner_001_bhay28.png`,
@@ -270,18 +271,13 @@ function gameInit() {
                 imageArray = interImageArray;
             } else if ($(levelButton).hasClass("btn-advanced")) {
                 imageArray = advImageArray;
-            };
+            }
             $('.game-timer').html('Time: ');
             $('.game-click').html('Moves: ');
             levelSelected = $(this);
             return levelSelected;
         });
     });
-    
-
-    // Initialize the game end scenario
-    cardsRemaining = cards.length;
-
 
     // Intial sound conditions (Game start audio & mute / unmute functions)
     let gameStartAudio = new Audio("https://res.cloudinary.com/bogtrotter72/video/upload/v1582024863/Milestone%202/Audio%20Files/game-start_jdargo.mp3");
@@ -310,28 +306,28 @@ function gameInit() {
             $(".rules").prop("disabled", true);
         }, 500);
 
-    })
+    });
 
     $(".selectLevel").click( () => {
         game.pauseCounter();
         setTimeout( () => {
             $(".selectLevel").prop("disabled", true);
         }, 500);
-    })
+    });
 
     $(".rulesClose").click( () => {
         game.restartCounter();
         setTimeout( () => {
             $(".rules").prop("disabled", false);
         }, 1200);
-    })
+    });
 
     $(".selectLevelClose").click( () => {
         game.restartCounter();
         setTimeout( () => {
             $(".selectLevel").prop("disabled", false);
         }, 1200);
-    })
+    });
     
 
     // Add click event listeners to the game start buttons and assign differing responses depending on which button was clicked
@@ -353,7 +349,7 @@ function gameInit() {
                     $("#page-title").css("display", "none");
                     $("#btn-wrapper__game-start").css("display", "none");
                     $("#bg-img__wrapper").css("display", "none");
-                };
+                }
                 $("#hud").fadeIn(1198);
                 $('#hud').css("display", "flex").delay(100);
             }
@@ -367,12 +363,12 @@ function gameInit() {
                     }
                     setTimeout( () => {
                         $("#game-won__outer-container").fadeOut("slow").css("display", "none");
-                    }, 1500)
+                    }, 1500);
                     $("#game-won__inner-container").fadeOut(500).css("display", "none");
                 }, 100);
                 $('.game-timer').html('Time: ');
                 $('.game-click').html('Moves: ');
-            };
+            }
 
 
             if (($(buttonType)).prop("id") == "beginner" || ($(buttonType)).prop("id") == "intermediate" || ($(buttonType)).prop("id") == "advanced" ) {
@@ -382,11 +378,11 @@ function gameInit() {
                         gameStartAudio.play();
                     }
                 }, 100);
-            };
+            }
 
             // Place the images on the card front faces
             for (i = 0; i < imageArray.length; i++) {
-                cardImage = imageArray[i];
+                let cardImage = imageArray[i];
                 $('.card__front-img').eq(i).attr('src', cardImage);
                 $('.card__back-img').eq(i).attr('src', 'https://res.cloudinary.com/bogtrotter72/image/upload/v1580943175/Milestone%202/Final%20Images/Card-Back__Mob_003_us1l0q.png');
             }
@@ -408,11 +404,11 @@ function gameInit() {
                 setTimeout( () => {
                     $(".rules").prop("disabled", false);
                     $(".selectLevel").prop("disabled", false);
-                }, 2750)
+                }, 2750);
             })();
 
             game.startGame();
-        })
+        });
     });
 
 
@@ -445,9 +441,9 @@ function gameInit() {
     cards.forEach(card => {
         card.addEventListener('click', () => {
             game.flipCard(card);            
-        })
+        });
     });
     return cards;
-};
+}
 
 document.addEventListener("DOMContentLoaded", gameInit());
