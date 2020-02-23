@@ -69,7 +69,7 @@ Visual and audio feedback for the player is provided in simple, recognizable for
 
 The initial design (below), in practice, served more as an idea's platform or board.  As is apparent in the final design, the first four screens were incorporated into the main page and hidden until required.
 
-A pdf of the wireframes is available [here](https://res.cloudinary.com/bogtrotter72/image/upload/v1582455319/Milestone%202/Final%20Images/Card_Match_Game_bmlzyi.pdf)
+A pdf of the wireframes is available [here](https://res.cloudinary.com/bogtrotter72/image/upload/v1582474102/Milestone%202/Final%20Images/Card_Match_Game2_uhqkzf.pdf)
 
 The wireframes were constructed with a mobile platform in mind, however, it was clear that there would be little difficult in scaling the game board for tablet, laptop or desktop devices.
 
