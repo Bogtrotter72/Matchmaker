@@ -698,6 +698,10 @@ img {
         font-size: 2rem;
     }
 
+    #btn-wrapper__game-start {
+        top: 75%;
+    }
+
     .card {
         height: 200px;
         width: 140px;
@@ -713,7 +717,7 @@ img {
 
     #main-page__bg-img {
         height: 400px;
-        left: 41%;
+        left: 40%;
         width: 350px;
     }
 
