@@ -1,12 +1,12 @@
 # Milestone Project 2
  
-The game was designed to fulfill several key goals. Above all else, as a game it should be entertaining; it should involve elements of play and fun.  Nevertheless, the game was born from an idea to produce a game that would also help improve spatial reasoning abilties; subsequently improving performance during psychometric testing.  Finally, the game hopes to serve as a display of my work to potential employers and collaborators.
+The game was designed to fulfill several key goals. Above all else, as a game it should be entertaining; it should involve elements of play and fun.  Nevertheless, the game was born from an idea to produce a game that would also help improve spatial reasoning abilties; subsequently improving performance during psychometric testing.  Finally, the game hopes to serve as a display of my programming abilities to potential employers and collaborators.
 
 Playful imagery, animations and sounds were selected as a means to satisfy the primary goal.
 
-In order to create an engaging way to improve spatial reasoning abilities, a relatively simple model was chosen as the beginner stage, providing a correspondingly low entry level.  Complexity increases in later stages by first altering the axes upon which the image is mirrored and then introducing an aspect of three-dimensionality.  As the images are loaded dynamically, they can be exchanged at any point by the developer to respond to user demands.
+In order to create an engaging way to improve spatial reasoning abilities, a relatively simple model was chosen as the beginner stage, providing a correspondingly low entry level.  Complexity increases in later stages by first altering the axes upon which the image is mirrored and then introducing an aspect of three-dimensionality.  As the images are loaded dynamically, they can be exchanged at any point by the developer to respond to user feedback.
 
-The incorporation of HTML, CSS and JavaScript elements, in an organised, well-structured manner should satisfy the last goal of displaying the developers's talents as a junior web / game developer.
+The incorporation of HTML, CSS and JavaScript elements in an organised, well-structured manner should satisfy the last goal of displaying the developers's talents as a junior web / game developer.
  
 *** 
 ### Website
@@ -19,16 +19,15 @@ The game can be viewed and played [here]( https://bogtrotter72.github.io/Matchma
 ## UX 
 
 ### Strategy & Planning
-The UX design process centres on a mobile-first design.  As the focal point is the gameboard, all elements are centred on screen and the background is relatively nondescript. Nevertheless, the background is designed to subtly mirror the block graphic used in the game.  Card colors are soft and contrasting and were chosen from opposing sides of the colour wheel to ensure maximum contrast and minimal interference; the player should be able to focus on the objects in the game.
+The UX design process revolves around a mobile-first design.  As the focal point is the gameboard, all elements are centred on screen and the background is relatively nondescript. Nevertheless, the background is designed to subtly mirror the block graphic used in the game.  Card colors are soft and contrasting and were chosen from opposing sides of the colour wheel to ensure maximum contrast and minimal interference; the player should be able to focus on the objects in the game.
 
 The opening animated character and title were chosen to signify that the game is a mental game, with a relationship to psychometric testing.
 
 A simple geometric shape was chosen that, from the outset, is suggestive of a three-dimensional environment - a feature that becomes more obvious in the advanced level.
 
-The 'Start Game' button has been given the bootstrap default 'btn-success' class, as green is suggestive of Go; the buttons for the level select feature have been given traffic light colours: 'btn-success', 'btn-warning', 'btn-danger' to reinforce the idea of pattern, of increasing difficulty, while offering something that users might also find familiar.
+The 'Start Game' button has been given the bootstrap default 'btn-success' class, as green is suggestive of Go; the buttons for the level select feature have been given traffic light colours: 'btn-success', 'btn-warning', 'btn-danger' to reinforce the idea of increasing difficulty, while offering a colour pattern that users might also find familiar.
 
-The overall green colour scheme provides a sense of relaxation, growth, success and youth.  (see <a href="https://www.amazon.com/Color-Design-Workbook-World-Graphic/dp/1592534333">Color Design Workbook</a> by Sean Adams, et. al.
-(2008, p.28)).  For this reason, green was also chosen for the geometric image used on the cards.
+The overall green colour scheme provides a sense of relaxation, growth and success.  (see <a href="https://www.amazon.com/Color-Design-Workbook-World-Graphic/dp/1592534333">Color Design Workbook</a> by Sean Adams, et. al.  (2008, p.28)).  For this reason, green was also chosen for the geometric image used on the cards.
 
 #### User Stories
 * As a player / user I want an entertaining, challenging and playful way to test and improve my spatial reasoning and awareness abilities. 
@@ -37,14 +36,14 @@ The overall green colour scheme provides a sense of relaxation, growth, success 
 
 #### Research & Prioritization
 There are a vast number of JavaScript libraries and frameworks available.
-At project inception, it was therefore, deemed prudent to research a number of these, e.g.: P5.js; Babylon.js; Three.js; Phaser.js; Tone.js; WebGL.
+At project inception it was, therefore, deemed prudent to research a number of these, e.g.: P5.js; Babylon.js; Three.js; Phaser.js; Tone.js; WebGL.
 
 That said, at the core of all the goals is a much simpler goal; a functioning game.  Priority was therefore given over to simple, clear, functioning code.  As the game seeks to reference spatial reasoning tests, some time was spent investigating the type of imagery used in these tests - resulting in the choice of a simple, geometric, three-dimensional shape.
 
-Finally, in order to demonstrate an understanding of JavaScript and game design, means were sought by which the code would provide a game that could be easily expanded in future iterations.
+Finally, in order to demonstrate an understanding of JavaScript and game design, means were sought by which code could provide a game that might be easily expanded upon in future iterations.
 
 ### Scope
-The scope centred around creating a core game framework that could, at a later date, be expanded upon to include more complex features.  The use of image arrays and the dynamic assignment of images are indicative of the developer's foundational work in creating such a framework.
+The scope of the game was restricted, as far as possible, to creating a core game framework that could, at a later date, be expanded upon to include more complex features.  The use of image arrays and the dynamic assignment of images are indicative of the developer's foundational work in creating such a framework.  The various elements that were included in the core scope include:
 
 * A landing screen that has a clearly identifiable image and text to identify the game and suggest its niche, and a clear indicator that it is the game start screen
 * The ability for players to quickly access the game board
@@ -74,7 +73,7 @@ A pdf of the wireframes is available [here](https://res.cloudinary.com/bogtrotte
 The wireframes were constructed with a mobile platform in mind, however, it was clear that there would be little difficult in scaling the game board for tablet, laptop or desktop devices.
 
 ### Surface
-As stated, the look of the game is purposefully designed to be relaxing yet playful.  This conscious design decision was made in an attempt to counteract the stress of preparing for tests.
+As stated, the look of the game is purposefully designed to have a relaxing yet playful feel.  This conscious design decision was made in an attempt to counteract the stress of preparing for tests.  The background is designed to subtly mirror the block graphic used in the game.  Its colours match those in the game and are muted to reinforce the background positioning.
 
 ### Design Decisions
 The font was chosen to suggest an element of play.  The choice of a simple geometric shape was made following a trial with complex block shapes in three-dimensional space.  Test subjects found the game too difficult and were therefore not encouraged to explore the game further.  More accessible designs were developed in response to this feedback.
@@ -83,11 +82,11 @@ The font was chosen to suggest an element of play.  The choice of a simple geome
 ## Features
 ### Existing features
 * **Rules & Select level** - The Rules and Select Level modals utilize Bootstrap features to disable the game screen.  The buttons to open the modals are disabled at appropriate times in order to prevent bugs with the timer function.
-* **Sound / Mute** - The sound / mute icons provide the player with the ability to play the game with or without sound effects.
+* **Sound / Mute** - The sound / mute icons provide the player with the ability to play the game with or without sound effects, and persist on 'play again'.
 * **Time & Moves** - The Time and Moves displays provide the player the means of tracking their progress in the game.  
 * **Animation & Sounds** - The animations and sounds further enhance the sense of play and, as a game feature, give the player essential feedback on their interactions as well as subtly reflecting their performance (match, no match, game win).
-* **Game Win** - The Game Win screen presents the player with their score and the option to continue or quit the game.
-* **Game Score** - The game scoring method is based on the number of cards in the game, the number of clicks and the time taken to complete a board.  In addition, the player is awarded a multiplier bonus for choosing more difficult levels - in anticipation of the level taking more time to solve.
+* **Game Win** - The Game Win screen presents the player with their score and the option to play again or quit the game.
+* **Game Score** - The game scoring method is based on the number of cards in the game, the number of clicks and the time taken to complete a board.  In addition, the player is awarded a multiplier bonus for choosing more difficult levels - in anticipation that the level will take more time to solve.
 
 ### Planned features 
 * Dynamic assignment of card backface images (allocate different images to the background dependent on the level selected).
@@ -96,17 +95,17 @@ The font was chosen to suggest an element of play.  The choice of a simple geome
 * A leaderboard where players could compete against themselves (possible expansion / integration with other sites to allow sharing of scores with friends, etc.).
 * With the inclusion of other technologies, it would be possible to develop the game so that it:
   * would be available to those using assistive technologies
-  * offer a modicum of artificial intelligence, increasing or decreasing the level of difficulty dependent on player performance
+  * offer a modicum of artificial intelligence, increasing or decreasing the level of difficulty dependent upon player performance
 
 ***
 ## Technologies Used
-* [HTML](https://en.wikipedia.org/wiki/HTML) - Main language used to structure the page.
-* [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - Providing styling for the site.
-* [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Adding functionality to the skill circles, as well as 'on click', 'hidden' and 'scroll'. 
+* [HTML](https://en.wikipedia.org/wiki/HTML) - Providing the basic structure for the page.
+* [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - Styling the site, providing responsive design and adding animations.
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Adding functionality to the site, in the form of triggering events and animations, dynamically allocating images, etc. 
 * [JQuery](https://jquery.com/) - Supporting library for much of the JavaScript functionality. 
-* [Google fonts](https://fonts.google.com/) - For fancy game fonts (signs & popups etc)
-* [Blender](https://www.blender.org/) - Creating graphics
-* [Balsamiq](https://balsamiq.com/) - Creating wireframes 
+* [Google fonts](https://fonts.google.com/) - For the game font
+* [Blender](https://www.blender.org/) - Creating card graphics, background image
+* [Balsamiq](https://balsamiq.com/) - Creating wireframes at project inception
 
 ***
 ## Testing 
@@ -118,7 +117,7 @@ The *main.js* file was passed through a <a href="https://jshint.com/">linter
 The files passed with no major errors or issues.
 
 ### Manual Testing
-Throughtout the project, the console window was used extensively, in combination with console.log statements in the code, to check feedback from all user interactions.
+Throughtout the project, the console window was used extensively, in combination with console.log statements in the code, to check feedback from all player interactions.
 
 All clickable elements were thoroughly tested, in order to identify any bugs that might occur through multiple function calls, double-click events, etc.
 
@@ -132,21 +131,20 @@ The website was also tested in the Blisk browser, on a variety of devices, inclu
 * iPad
 * iPad Pro
 
-Chrome and Blisk developer tools were used for testing the site, and were of particular use in positioning the graphics, adjusting animation timings.
+Chrome and Blisk developer tools were used for testing the site, and were of particular use in positioning the graphics, confirming control flow, and adjusting animation timings.
 
 ### Cross-Browser Compatability
 The website was tested in the following browsers:
+* Blisk
 * Firefox
-* Google Chrome
-* Internet Explorer 11
 * Google Chrome
 * Microsoft Edge
 * Opera
 
 ### Interesting bug - resolved
-During testing, any attempt to reload the game created a bug which caused the second card of a matched pair to persist in memory so that, upon selecting another card, the card persisting in memory would be compared with it, found not to match and both cards would flip back to the starting position.  This would leave one card 'flipped' and ensure that the player could never complete a game.
+During testing, any attempt to reload the game created a bug which caused the second card of a matched pair to persist in memory so that, upon selecting another card, the card persisting in memory would be compared with it, and when found not to match, both cards would flip back to the starting position.  This would leave one card 'flipped' and ensure that the player could never complete a game.
 
-Initially, this occurred after any game restart.  Following several attempts to resolve the issue, the bug was only evident if the game had been restarted twice.
+Initially, this occurred after any game restart.  Following several attempts to resolve the issue, the bug shifted so that the game had to be restarted twice before the bug would appear.
 
 A restructuring of the code was required to completely alleviate the issue.
 
@@ -168,10 +166,6 @@ All the images for the game were designed by the developer, using Blender v2.81a
 
 All the sounds were adapted from open source sound files available from [Freesound](https://freesound.org/).
 
-### Websites
-* [Visual Studio Code](https://code.visualstudio.com/) - IDE and bug testing
-* [Github](https://github.com/Bogtrotter72) - Code repository, website hosting & deployment
-
-
-### Acknowledgements 
-Thank you to my mentor for guiding me through the vast and complex world of JavaScript, and for keeping my feet on the ground.
+### Acknowledgements
+I would like to acknowledge and thank [Dan Buda](https://stackoverflow.com/users/6580663/dan-buda) for his space-evenly fix for MS Edge.
+Thank you also to my mentor for guiding me through the vast and complex world of JavaScript, and for keeping my feet on the ground.

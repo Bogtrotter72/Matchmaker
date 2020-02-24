@@ -352,6 +352,7 @@ function gameInit() {
                 }
                 $("#hud").fadeIn(1198);
                 $('#hud').css("display", "flex").delay(100);
+                $('#hud').css("display", "-webkit-flex").delay(100);
             }
 
             // Check if 'Play Again' clicked and reset the board for a new game

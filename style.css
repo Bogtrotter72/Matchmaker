@@ -229,10 +229,10 @@ a:hover, a:link, a:visited {
     font-family: 'Permanent Marker', cursive;
     font-size: 1rem;
     font-weight: normal;
-    -webkit-box-pack: space-evenly;
-    -webkit-justify-content: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -webkit-box-pack: space-between;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: space-between;
+            justify-content: space-between;
     left: 50%;
     padding-top: 20px;
     position: absolute;
@@ -240,7 +240,7 @@ a:hover, a:link, a:visited {
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
             transform: translateX(-50%);
-    width: 100%;
+    width: 80%;
     z-index: 10;
 }
 
@@ -252,6 +252,7 @@ img {
 
 .main-page {
     height: 100vh;
+    overflow: hidden;
     position: relative;
 }
 
@@ -343,6 +344,13 @@ img {
     display: none;
 }
 
+/* MS Edge fix */
+@supports not (-ms-ime-align: auto) {
+    #hud {
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
 
 
 /* ANIMATIONS */
@@ -520,8 +528,13 @@ img {
     }
 }
 
-/* Media queries for tablet in portrait orientation */
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 600px) {
+    #main-page__bg-img {
+        left: 30%;
+    }
+}
+
+@media only screen and (min-width: 600px) and (orientation: landscape) {
     #game-container {
         -ms-grid-columns: auto 10px auto 10px auto 10px auto 10px auto 10px auto;
         grid-template-columns: repeat(6, auto);
@@ -529,6 +542,7 @@ img {
     }
 }
 
+/* Media queries for tablet in portrait orientation */
 @media only screen and (min-width: 768px) {
     #btn-wrapper__game-start {
         top: 65%;
@@ -733,5 +747,19 @@ img {
     .card {
         height: 250px;
         width: 170px;
+    }
+}
+
+/* Settings for iMac desktops */
+@media only screen and (min-width: 2200px) {
+    .card {
+        height: 330px;
+        width: 220px;
+    }
+
+    #main-page__bg-img {
+        height: 450px;
+        left: 41%;
+        width: 400px;
     }
 }
