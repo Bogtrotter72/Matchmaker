@@ -11,7 +11,7 @@ The incorporation of HTML, CSS and JavaScript elements in an organised, well-str
 *** 
 ### Website
  
-The game can be viewed and played [here]( https://bogtrotter72.github.io/Matchmaker/)
+The game can be viewed and played [here](https://bogtrotter72.github.io/Psychometric-Match/)
 
 ![Psychometric Match Demo](https://res.cloudinary.com/bogtrotter72/image/upload/v1582293116/Milestone%202/Final%20Images/Demo_enlolm.png)
 
