@@ -252,7 +252,6 @@ img {
 
 .main-page {
     height: 100vh;
-    overflow: hidden;
     position: relative;
 }
 
@@ -349,6 +348,9 @@ img {
     #hud {
       justify-content: space-evenly;
       width: 100%;
+    }
+    .main-page {
+        overflow: hidden;
     }
   }
 
